@@ -98,10 +98,5 @@ func main() {
 	// fmt.Println(countDigits(3336999))
 	// fmt.Println(reverseInteger(123))
 	// fmt.Println(lcmAndGcd(14, 8))
-	fmt.Println(isArmstrongNumber(9471))
-	fmt.Println(isArmstrongNumber(0))    // true
-	fmt.Println(isArmstrongNumber(153))  // true
-	fmt.Println(isArmstrongNumber(9474)) // true
-	fmt.Println(isArmstrongNumber(123))  // false
-	fmt.Println(isArmstrongNumber(370))  // true
+	fmt.Println(isArmstrongNumber(153)) // true
 }
