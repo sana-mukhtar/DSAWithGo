@@ -77,12 +77,31 @@ func lcmAndGcd(n1, n2 int) (int, int) {
 
 // Q.5 Given an integer n, write a function to determine if it is an Armstrong number. An Armstrong number (also known as a Narcissistic number) for a number n is a number that is equal to the sum of its own digits each raised to the power of the number of digits.
 func isArmstrongNumber(n int) bool {
-	return false
+	copyNum, copyNum2 := n, n
+	armstrongNumber := 0
+	count := 0
+	for copyNum != 0 {
+		copyNum /= 10
+		count++
+	}
+	for copyNum2 != 0 {
+		lastDigit := copyNum2 % 10
+		armstrongNumber = armstrongNumber + int(math.Pow(float64(lastDigit), float64(count)))
+		copyNum2 /= 10
+	}
+	return n == armstrongNumber
+
 }
 
 func main() {
-	fmt.Println("hello")
-	fmt.Println(countDigits(3336999))
-	fmt.Println(reverseInteger(123))
-	fmt.Println(lcmAndGcd(14, 8))
+	// fmt.Println("hello")
+	// fmt.Println(countDigits(3336999))
+	// fmt.Println(reverseInteger(123))
+	// fmt.Println(lcmAndGcd(14, 8))
+	fmt.Println(isArmstrongNumber(9471))
+	fmt.Println(isArmstrongNumber(0))    // true
+	fmt.Println(isArmstrongNumber(153))  // true
+	fmt.Println(isArmstrongNumber(9474)) // true
+	fmt.Println(isArmstrongNumber(123))  // false
+	fmt.Println(isArmstrongNumber(370))  // true
 }
