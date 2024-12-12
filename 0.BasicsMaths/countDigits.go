@@ -40,8 +40,24 @@ func reverseInteger(n int) int {
 	return reverse
 }
 
+// Q.4 Given two integers a and b, write a function lcmAndGcd() to compute their LCM and GCD. The function inputs two integers a and b and returns a list containing their LCM and GCD.
+func lcmAndGcd(n1, n2 int) (int, int) {
+	copyn1 := n1
+	copyn2 := n2
+	for n1%n2 != 0 {
+		rem := n1 % n2
+		n1 = n2
+		n2 = rem
+
+	}
+	gcd := n2
+	lcm := (copyn1 * copyn2) / gcd
+	return lcm, gcd
+}
+
 func main() {
 	fmt.Println("hello")
 	fmt.Println(countDigits(3336999))
-	fmt.Print(reverseInteger(123))
+	fmt.Println(reverseInteger(123))
+	fmt.Println(lcmAndGcd(14, 8))
 }
