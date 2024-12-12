@@ -40,7 +40,7 @@ func reverseInteger(n int) int {
 	return reverse
 }
 
-// Given an integer x, return true if x is a palindrome, and false otherwise. Example 1:Input: x = 121 Output: trueExplanation: 121 reads as 121 from left to right and from right to left. Example 2:Input: x = -121 Output: falseExplanation: From left to right, it reads -121. From right to left, it becomes 121-. Therefore it is not a palindrome.
+// Q.3 Given an integer x, return true if x is a palindrome, and false otherwise. Example 1:Input: x = 121 Output: trueExplanation: 121 reads as 121 from left to right and from right to left. Example 2:Input: x = -121 Output: falseExplanation: From left to right, it reads -121. From right to left, it becomes 121-. Therefore it is not a palindrome.
 func isPalindrome(x int) bool {
 	if x < 0 {
 		return false
@@ -90,7 +90,6 @@ func isArmstrongNumber(n int) bool {
 		copyNum2 /= 10
 	}
 	return n == armstrongNumber
-
 }
 
 func main() {
