@@ -40,6 +40,26 @@ func reverseInteger(n int) int {
 	return reverse
 }
 
+// Given an integer x, return true if x is a palindrome, and false otherwise. Example 1:Input: x = 121 Output: trueExplanation: 121 reads as 121 from left to right and from right to left. Example 2:Input: x = -121 Output: falseExplanation: From left to right, it reads -121. From right to left, it becomes 121-. Therefore it is not a palindrome.
+func isPalindrome(x int) bool {
+	if x < 0 {
+		return false
+	}
+
+	rev := 0
+	lastDigit := 0
+	copyNum := x
+	for x != 0 {
+		lastDigit = x % 10
+		rev = rev*10 + lastDigit
+		x = x / 10
+	}
+	if rev == copyNum {
+		return true
+	}
+	return false
+}
+
 // Q.4 Given two integers a and b, write a function lcmAndGcd() to compute their LCM and GCD. The function inputs two integers a and b and returns a list containing their LCM and GCD.
 func lcmAndGcd(n1, n2 int) (int, int) {
 	copyn1 := n1
@@ -53,6 +73,11 @@ func lcmAndGcd(n1, n2 int) (int, int) {
 	gcd := n2
 	lcm := (copyn1 * copyn2) / gcd
 	return lcm, gcd
+}
+
+// Q.5 Given an integer n, write a function to determine if it is an Armstrong number. An Armstrong number (also known as a Narcissistic number) for a number n is a number that is equal to the sum of its own digits each raised to the power of the number of digits.
+func isArmstrongNumber(n int) bool {
+	return false
 }
 
 func main() {
