@@ -1,5 +1,17 @@
 package main
 
+import "fmt"
+
+// Print numbers from 1 to n without the help of loops. You only need to complete the function printNos() that takes n as a parameter and prints the number from 1 to n recursively.
+func printNos(i, num int) {
+	if i > num {
+		return
+	}
+	fmt.Println(i)
+	i++
+	printNos(i, num)
+}
+
 //The Fibonacci numbers, commonly denoted F(n) form a sequence, called the Fibonacci sequence, such that each number is the sum of the two preceding ones, starting from 0 and 1. That is,
 // F(0) = 0, F(1) = 1
 // F(n) = F(n - 1) + F(n - 2), for n > 1.
@@ -12,5 +24,5 @@ func fib(n int) int {
 }
 
 func main() {
-
+	printNos(1, 10)
 }
