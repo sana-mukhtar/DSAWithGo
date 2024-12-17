@@ -42,7 +42,7 @@ func fib(n int) int {
 func isPalindrome(str string) bool {
 	var filteredStr string
 	for _, s := range str {
-		if unicode.IsLetter(s) {
+		if unicode.IsLetter(s)||unicode.IsDigit(s) {
 			filteredStr = filteredStr + string(s)
 		}
 	}
@@ -65,5 +65,5 @@ func isPalindrome(str string) bool {
 func main() {
 	// printNos(1, 10)
 	printReverseNos(5)
-	fmt.Println(isPalindrome("asdA:;,AD-Sa"))
+	fmt.Println(isPalindrome("0P"))
 }
