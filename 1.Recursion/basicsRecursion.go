@@ -42,7 +42,7 @@ func fib(n int) int {
 func isPalindrome(str string) bool {
 	var filteredStr string
 	for _, s := range str {
-		if unicode.IsLetter(s)||unicode.IsDigit(s) {
+		if unicode.IsLetter(s) || unicode.IsDigit(s) {
 			filteredStr = filteredStr + string(s)
 		}
 	}
@@ -62,8 +62,22 @@ func isPalindrome(str string) bool {
 	return true
 }
 
+// Given an integer n, calculate the sum of series 1^3 + 2^3 + 3^3 + 4^3 + … till n-th term.
+// Example:
+// Input: n = 5
+// Output: 225
+// Explanation: 1^3 + 2^3 + 3^3 + 4^3 + 5^3 = 225
+func sumOfSeries(n int, sum int) int {
+	if n == 0{
+		return sum
+	}
+	sum += n * n * n
+	return sumOfSeries(n-1, sum)
+}
+
 func main() {
 	// printNos(1, 10)
 	printReverseNos(5)
 	fmt.Println(isPalindrome("0P"))
+	fmt.Println(sumOfSeries(5, 0))
 }
