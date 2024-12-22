@@ -47,19 +47,18 @@ func isPalindrome(str string) bool {
 		}
 	}
 	filteredStr = strings.ToLower(filteredStr)
+	endIdx := len(strings.Split(filteredStr, "")) - 1
+	return isPalindromeUsingRecursion(filteredStr, 0, endIdx)
+}
 
-	len := len(strings.Split(filteredStr, ""))
-	left := 0
-	right := len - 1
-
-	for i := 0; i < len; i++ {
-		if filteredStr[left] != filteredStr[right] {
-			return false
-		}
-		left++
-		right--
+func isPalindromeUsingRecursion(str string, start, end int) bool {
+	if start >= end {
+		return true
 	}
-	return true
+	if str[start] != str[end] {
+		return false
+	}
+	return isPalindromeUsingRecursion(str, start+1, end-1)
 }
 
 // Given an integer n, calculate the sum of series 1^3 + 2^3 + 3^3 + 4^3 + … till n-th term.
@@ -77,9 +76,8 @@ func sumOfSeries(n int, sum int) int {
 
 func main() {
 	// printNos(1, 10)
-	printReverseNos(5)
-	fmt.Println(isPalindrome("0P"))
-	fmt.Println(sumOfSeries(5, 0))
-	var arr [1e9]int
-	fmt.Println(len(arr))
+	// printReverseNos(5)
+	// fmt.Println(isPalindrome("0P"))
+	// fmt.Println(sumOfSeries(5, 0))
+	fmt.Println(isPalindrome("ABCba"))
 }
