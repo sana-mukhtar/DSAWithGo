@@ -68,7 +68,7 @@ func isPalindrome(str string) bool {
 // Output: 225
 // Explanation: 1^3 + 2^3 + 3^3 + 4^3 + 5^3 = 225
 func sumOfSeries(n int, sum int) int {
-	if n == 0{
+	if n == 0 {
 		return sum
 	}
 	sum += n * n * n
@@ -80,4 +80,6 @@ func main() {
 	printReverseNos(5)
 	fmt.Println(isPalindrome("0P"))
 	fmt.Println(sumOfSeries(5, 0))
+	var arr [1e9]int
+	fmt.Println(len(arr))
 }
