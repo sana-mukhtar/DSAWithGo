@@ -44,7 +44,21 @@ func insertionSort(arr []int) []int {
 	return arr
 }
 
-// 1 loop on array -> compare i and i+1-> if i+1 is smaller -> iterate inversely
+func mergeSort(arr []int) []int {
+	if len(arr) <= 0 {
+		return arr
+	}
+	mid := len(arr) / 2
+	left := mergeSort(arr[:mid])
+	right := mergeSort(arr[mid:])
+	return merge(left, right)
+}
+
+func merge(left, right []int) []int {
+	sorted := []int{}
+	// implement me
+	return sorted
+}
 
 func main() {
 	// 	fmt.Println("selectionsort:", selectionSort([]int{64, 25, 12, 22, 11}))
