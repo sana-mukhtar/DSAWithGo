@@ -45,7 +45,7 @@ func insertionSort(arr []int) []int {
 }
 
 func mergeSort(arr []int) []int {
-	if len(arr) <= 0 {
+	if len(arr) <= 1 {
 		return arr
 	}
 	mid := len(arr) / 2
@@ -56,7 +56,19 @@ func mergeSort(arr []int) []int {
 
 func merge(left, right []int) []int {
 	sorted := []int{}
-	// implement me
+	leftptr, rightptr := 0, 0
+
+	for leftptr < len(left) && rightptr < len(right) {
+		if left[leftptr] <= right[rightptr] {
+			sorted = append(sorted, left[leftptr])
+			leftptr++
+		} else {
+			sorted = append(sorted, right[rightptr])
+			rightptr++
+		}
+	}
+	sorted = append(sorted, left[leftptr:]...)
+	sorted = append(sorted, right[rightptr:]...)
 	return sorted
 }
 
@@ -64,9 +76,8 @@ func main() {
 	// 	fmt.Println("selectionsort:", selectionSort([]int{64, 25, 12, 22, 11}))
 	// 	fmt.Println("bubblesort:", bubbleSort([]int{38, 27, 43, 3, 9, 82, 10}))
 	// 	fmt.Println("bubblesort:", bubbleSort([]int{64, 25, 12, 22, 11}))
-	fmt.Println("insertionsort:", insertionSort([]int{5, 4, 3, 2, 7}))
-	// for j := 0; j >= 0; j-- {
-	// 	println(j)
-	// }
+	// fmt.Println("insertionsort:", insertionSort([]int{5, 4, 3, 2, 7}))
+
+	fmt.Println(mergeSort([]int{2, 8, 4, 5, 9, 1, 12, 5}))
 
 }
