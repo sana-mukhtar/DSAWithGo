@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-// Problem Statement: Given an array of N integers, write a program to implement the Selection sorting algorithm.
+// Given an array of N integers, write a program to implement the Selection sorting algorithm. Selection Sort is a comparison-based sorting algorithm. It sorts an array by repeatedly selecting the smallest (or largest) element from the unsorted portion and swapping it with the first unsorted element. This process continues until the entire array is sorted.
 func selectionSort(arr []int) []int {
 	for i := 0; i < len(arr); i++ {
 		lowestNum := arr[i]
