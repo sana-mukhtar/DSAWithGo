@@ -79,19 +79,37 @@ func rotate(nums []int, k int) {
 	}
 }
 
+// func moveZeroes(nums []int) {
+// 	for i := 0; i < len(nums)-1; i++ {
+// 		if nums[i] == 0 {
+// 			temp := nums[i]
+// 			for j := i; j < len(nums)-1; j++ {
+// 				nums[j] = nums[j+1]
+// 			}
+// 			nums[len(nums)-1] = temp
+// 			fmt.Println(i, ":",nums)
+// 		} else {
+// 			continue
+// 		}
+// 	}
+// }
+
 func moveZeroes(nums []int) {
-	for i := 0; i < len(nums)-1; i++ {
-		if nums[i] == 0 {
-			temp := nums[i]
-			for j := i; j < len(nums)-1; j++ {
-				nums[j] = nums[j+1]
-			}
-			nums[len(nums)-1] = temp
-			fmt.Println(i, ":",nums)
-		} else {
-			continue
+	numsLength := len(nums)
+	var temp []int
+	for i := 0; i < numsLength; i++ {
+		if nums[i] != 0 {
+			temp = append(temp, nums[i])
 		}
 	}
+
+	for i := 0; i < len(temp); i++ {
+		nums[i] = temp[i]
+	}
+
+    for i:= len(temp); i<numsLength; i++{
+        nums[i]=0
+    }
 }
 
 func main() {
@@ -103,5 +121,5 @@ func main() {
 	// fmt.Println(isSorted([]int{2, 3, 4, 5, 15, 6}))
 	// fmt.Println(removeDuplicates([]int{1,1,3, 3, 4, 5, 7, 7, 8}))
 	// rotate([]int{1, 2, 3, 4, 5, 6, 7}, 3)
-	moveZeroes([]int{0,1,0,3,12})
+	moveZeroes([]int{0, 1, 0, 3, 12})
 }
