@@ -158,7 +158,40 @@ func unionOfTwoArrays(arr1, arr2 []int) []int {
 	return union
 }
 
+func interSectionOfTwoArrays(arr1, arr2 []int) []int {
+	m, n := len(arr1), len(arr2)
+	i, j := 0, 0
+	intersectionArray := []int{}
+	for i < m && j < n {
+		if arr1[i] == arr2[j] {
+			intersectionArray = append(intersectionArray, arr1[i])
+			i++
+			j++
+		}
+		if arr1[i]>arr2[j]{
+
+		}
+	}
+	return intersectionArray
+}
+
+func missingNumber(nums []int) int {
+    for i:=0;i<=len(nums);i++{
+        flag:=0
+        for j:=0;j<len(nums);j++{
+            if nums[j]==i{
+                flag =1
+                break
+            }
+        }
+        if flag ==0{
+            return i
+        }
+    }
+    return -1
+}
+
 func main() {
 	moveZeroes([]int{0, 1, 0, 3, 12})
-	fmt.Println(unionOfTwoArrays([]int{1, 2, 2, 3,4}, []int{1, 1, 2, 5, 7}))
+	fmt.Println(unionOfTwoArrays([]int{1, 2, 2, 3, 4}, []int{1, 1, 2, 5, 7}))
 }
