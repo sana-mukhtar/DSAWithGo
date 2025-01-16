@@ -95,31 +95,70 @@ func rotate(nums []int, k int) {
 // }
 
 func moveZeroes(nums []int) {
-	numsLength := len(nums)
-	var temp []int
-	for i := 0; i < numsLength; i++ {
-		if nums[i] != 0 {
-			temp = append(temp, nums[i])
+	nonZeroIdx := 0
+	for _, num := range nums {
+		if num != 0 {
+			nums[nonZeroIdx] = num
+			nonZeroIdx++
 		}
 	}
 
-	for i := 0; i < len(temp); i++ {
-		nums[i] = temp[i]
+	for i := nonZeroIdx; i < len(nums); i++ {
+		nums[i] = 0
+	}
+}
+
+func linearSearch(key int, arr []int) int {
+	for i, v := range arr {
+		if v == key {
+			return i
+		}
+	}
+	return -1
+}
+
+func unionOfTwoArrays(arr1, arr2 []int) []int {
+	m, n := len(arr1), len(arr2)
+	i, j := 0, 0
+	union := []int{}
+
+	for i < m && j < n {
+		// equal condition
+		if arr1[i] == arr2[j] {
+			if len(union) == 0 || union[len(union)-1] != arr1[i] {
+				union = append(union, arr1[i])
+			}
+			i++
+			j++
+		} else if arr1[i] < arr2[j] { // small condition
+			if len(union) == 0 || union[len(union)-1] != arr1[i] {
+				union = append(union, arr1[i])
+			}
+			i++
+		} else { //greater condition
+			if len(union) == 0 || union[len(union)-1] != arr2[j] {
+				union = append(union, arr2[j])
+			}
+			j++
+		}
 	}
 
-    for i:= len(temp); i<numsLength; i++{
-        nums[i]=0
-    }
+	for i < m {
+		if len(union) == 0 || union[len(union)-1] != arr1[i] {
+			union = append(union, arr1[i])
+		}
+		i++
+	}
+	for j < n {
+		if len(union) == 0 || union[len(union)-1] != arr2[j] {
+			union = append(union, arr2[j])
+		}
+		j++
+	}
+	return union
 }
 
 func main() {
-	// max := findLargest([]int{4, 52, 2, 78, 55})
-	// fmt.Println(max)
-	// fmt.Println(findSecondLargest([]int{3, 45, 32, 78, 12, 99, 100}))
-	// fmt.Println(isSorted([]int{2, 3, 4, 5, 5, 6}))
-	// fmt.Println(isSorted([]int{20, 18, 17, 16, 10, 7, 0}))
-	// fmt.Println(isSorted([]int{2, 3, 4, 5, 15, 6}))
-	// fmt.Println(removeDuplicates([]int{1,1,3, 3, 4, 5, 7, 7, 8}))
-	// rotate([]int{1, 2, 3, 4, 5, 6, 7}, 3)
 	moveZeroes([]int{0, 1, 0, 3, 12})
+	fmt.Println(unionOfTwoArrays([]int{1, 2, 2, 3,4}, []int{1, 1, 2, 5, 7}))
 }
