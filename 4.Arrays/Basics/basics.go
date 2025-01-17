@@ -168,7 +168,7 @@ func interSectionOfTwoArrays(arr1, arr2 []int) []int {
 			i++
 			j++
 		}
-		if arr1[i]>arr2[j]{
+		if arr1[i] > arr2[j] {
 
 		}
 	}
@@ -176,32 +176,43 @@ func interSectionOfTwoArrays(arr1, arr2 []int) []int {
 }
 
 func missingNumber(nums []int) int {
-    for i:=0;i<=len(nums);i++{
-        flag:=0
-        for j:=0;j<len(nums);j++{
-            if nums[j]==i{
-                flag =1
-                break
-            }
-        }
-        if flag ==0{
-            return i
-        }
-    }
-    return -1
+	for i := 0; i <= len(nums); i++ {
+		flag := 0
+		for j := 0; j < len(nums); j++ {
+			if nums[j] == i {
+				flag = 1
+				break
+			}
+		}
+		if flag == 0 {
+			return i
+		}
+	}
+	return -1
+}
+
+// better
+func missingNumberBetter(nums []int) int {
+	sum1, sum2 := 0, 0
+	for i := 0; i <= len(nums); i++ {
+		sum1 += i
+	}
+
+	for i := 0; i < len(nums); i++ {
+		sum2 += nums[i]
+	}
+	return sum1 - sum2
 }
 
 // optimal
 func missingNumberOptimal(nums []int) int {
-    sum1, sum2 :=0,0
-    for i:=0;i<=len(nums);i++{
-       sum1 += i
-    }
-
-    for i:=0; i<len(nums);i++{
-        sum2 += nums[i]
-    }
-    return sum1-sum2
+	sum1, sum2 := 0, 0
+	length := len(nums)
+	sum1 = length * (length + 1) / 2
+	for i := 0; i < len(nums); i++ {
+		sum2 += nums[i]
+	}
+	return sum1 - sum2
 }
 
 func main() {
