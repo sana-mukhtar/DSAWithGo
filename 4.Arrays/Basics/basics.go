@@ -215,6 +215,36 @@ func missingNumberOptimal(nums []int) int {
 	return sum1 - sum2
 }
 
+func findMaxConsecutiveOnes(nums []int) int {
+	max,count := 0,0
+	for i := 0; i < len(nums); i++ {
+		if nums[i] == 1 {
+            count++
+            if max<count{
+                max = count
+            }
+		}else{
+            count = 0
+        }
+	}
+	return max
+}
+
+func singleNumber(nums []int) int {
+    for i:=0;i<len(nums);i++{
+        count :=0
+        for j:=0;j<len(nums);j++{
+            if nums[j]==nums[i]{
+                count++
+            }
+        }
+        if count!=2{
+            return nums[i]
+        }
+    }
+    return -1
+}
+
 func main() {
 	moveZeroes([]int{0, 1, 0, 3, 12})
 	fmt.Println(unionOfTwoArrays([]int{1, 2, 2, 3, 4}, []int{1, 1, 2, 5, 7}))
