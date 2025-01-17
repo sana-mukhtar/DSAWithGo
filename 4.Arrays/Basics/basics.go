@@ -191,6 +191,19 @@ func missingNumber(nums []int) int {
     return -1
 }
 
+// optimal
+func missingNumberOptimal(nums []int) int {
+    sum1, sum2 :=0,0
+    for i:=0;i<=len(nums);i++{
+       sum1 += i
+    }
+
+    for i:=0; i<len(nums);i++{
+        sum2 += nums[i]
+    }
+    return sum1-sum2
+}
+
 func main() {
 	moveZeroes([]int{0, 1, 0, 3, 12})
 	fmt.Println(unionOfTwoArrays([]int{1, 2, 2, 3, 4}, []int{1, 1, 2, 5, 7}))
