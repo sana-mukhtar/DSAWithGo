@@ -216,33 +216,49 @@ func missingNumberOptimal(nums []int) int {
 }
 
 func findMaxConsecutiveOnes(nums []int) int {
-	max,count := 0,0
+	max, count := 0, 0
 	for i := 0; i < len(nums); i++ {
 		if nums[i] == 1 {
-            count++
-            if max<count{
-                max = count
-            }
-		}else{
-            count = 0
-        }
+			count++
+			if max < count {
+				max = count
+			}
+		} else {
+			count = 0
+		}
 	}
 	return max
 }
 
+// Given a non-empty array of integers nums, every element appears twice except for one. Find that single one.
 func singleNumber(nums []int) int {
-    for i:=0;i<len(nums);i++{
-        count :=0
-        for j:=0;j<len(nums);j++{
-            if nums[j]==nums[i]{
-                count++
-            }
-        }
-        if count!=2{
-            return nums[i]
-        }
-    }
-    return -1
+	for i := 0; i < len(nums); i++ {
+		count := 0
+		for j := 0; j < len(nums); j++ {
+			if nums[j] == nums[i] {
+				count++
+			}
+		}
+		if count != 2 {
+			return nums[i]
+		}
+	}
+	return -1
+}
+
+func longestSubArray(nums []int, k int) {
+	max := 0
+	for i := 0; i < len(nums); i++ {
+		for j := 0; j < len(nums); j++ {
+			sum := 0
+			for k := i; k < j; k++ {
+				sum += nums[k]
+				if sum == k {
+
+				}
+			}
+		}
+	}
 }
 
 func main() {
