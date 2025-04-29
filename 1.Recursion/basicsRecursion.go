@@ -80,4 +80,50 @@ func main() {
 	// fmt.Println(isPalindrome("0P"))
 	// fmt.Println(sumOfSeries(5, 0))
 	fmt.Println(isPalindrome("ABCba"))
+	printN(3)
+	printName(1, 2)
+	sumOfNos(1, 6, 0)
+}
+
+// Revision
+// print nos till n
+var count = 0
+
+func printN(n int) {
+	if count > n {
+		return
+	}
+	fmt.Println(count)
+	count++
+	printN(n)
+}
+
+// print name N times
+func printName(i, n int) {
+	if i > n {
+		return
+	}
+	fmt.Println("Sana")
+	printName(i+1, n)
+}
+
+func sumOfNos(start, limit, sum int) {
+	if start > limit {
+		fmt.Println(sum)
+		return
+	}
+	sum = sum + start
+	sumOfNos(start+1, limit, sum)
+}
+
+// TODO
+func factorialOfNo(num, fact int) {
+	if num == 1 {
+		fmt.Println(fact)
+		return
+	}
+
+	fact = fact * 1
+
+	factorialOfNo(num-1, fact)
 }
