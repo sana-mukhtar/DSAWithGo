@@ -79,10 +79,15 @@ func main() {
 	// printReverseNos(5)
 	// fmt.Println(isPalindrome("0P"))
 	// fmt.Println(sumOfSeries(5, 0))
-	fmt.Println(isPalindrome("ABCba"))
-	printN(3)
-	printName(1, 2)
-	sumOfNos(1, 6, 0)
+	// fmt.Println(isPalindrome("ABCba"))
+	// printN(3)
+	// printName(1, 2)
+	// sumOfNos(1, 6, 0)
+	// fmt.Println(factorialUsingLoop(5))
+	// fmt.Println(factorialOfNo(5))
+	// fmt.Println(reverseArray([]int{1, 2, 3, 4, 5}))
+	// fmt.Println(reverseArrUsingRecursion([]int{1, 2, 3, 4, 5}, 0, 4))
+	fmt.Println(checkPalindrome("abaca", 0, 4))
 }
 
 // Revision
@@ -117,13 +122,61 @@ func sumOfNos(start, limit, sum int) {
 }
 
 // TODO
-func factorialOfNo(num, fact int) {
-	if num == 1 {
-		fmt.Println(fact)
-		return
+func factorialOfNo(num int) int {
+	if num == 0 {
+		return 1
 	}
 
-	fact = fact * 1
+	return num * factorialOfNo(num-1)
+}
 
-	factorialOfNo(num-1, fact)
+// i = 0, fact=1*5=5
+// i = 1, fact=5*4 =20
+// i = 2, fact=20*3=60
+// i = 3, fact=60*2=120
+// i = 4, fact=120*1=120
+func factorialUsingLoop(n int) int {
+	fact := 1
+	for i := 0; i < n; i++ {
+		fact = fact * (n - i) //5//4//3//2
+	}
+	return fact
+}
+
+func reverseArray(originalArr []int) []int {
+	reversedArr := make([]int, 0)
+	for i := len(originalArr) - 1; i >= 0; i-- {
+		reversedArr = append(reversedArr, originalArr[i])
+	}
+	return reversedArr
+}
+
+// [1,2,3,4,5]
+func reverseArrUsingRecursion(arr []int, startIdx, endIdx int) []int {
+	//base case
+	if startIdx > endIdx {
+		return arr
+	}
+
+	// swap
+	temp := arr[startIdx]
+	arr[startIdx] = arr[endIdx]
+	arr[endIdx] = temp
+
+	return reverseArrUsingRecursion(arr, startIdx+1, endIdx-1)
+}
+
+func checkPalindrome(word string, startIdx, endIdx int) bool {
+	// base case
+	if startIdx > endIdx {
+		return true
+	}
+
+	w := strings.Split(word, "")
+	if w[startIdx] != w[endIdx] {
+		return false
+	}
+
+	return checkPalindrome(word, startIdx+1, endIdx-1)
+
 }
