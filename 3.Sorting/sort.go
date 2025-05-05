@@ -20,6 +20,11 @@ func selectionSort(arr []int) []int {
 	return arr
 }
 
+// In Bubble Sort, for every iteration:
+// Compare the current element with the next one (arr[i] with arr[i+1]).
+// If the current element is greater, swap them.
+// After each pass, the largest value "bubbles" to the correct position at the end.
+// Keep repeating this process until the whole array is sorted.
 func bubbleSort(arr []int) []int {
 	for i := 0; i < len(arr); i++ {
 		for j := 0; j < len(arr)-i-1; j++ {
@@ -78,6 +83,42 @@ func main() {
 	// 	fmt.Println("bubblesort:", bubbleSort([]int{64, 25, 12, 22, 11}))
 	// fmt.Println("insertionsort:", insertionSort([]int{5, 4, 3, 2, 7}))
 
-	fmt.Println(mergeSort([]int{2, 8, 4, 5, 9, 1, 12, 5}))
+	// fmt.Println(mergeSort([]int{2, 8, 4, 5, 9, 1, 12, 5}))
+	a := selSort([]int{1, 2, 4, 5, 8, 0})
+	b := bubbleSort2([]int{2, 3, 1, 4})
+	fmt.Println(a, b)
 
+}
+
+// step 1 - find min element
+func selSort(arr []int) []int {
+	for i := 0; i < len(arr); i++ {
+		minIdx := i
+		for j := i + 1; j < len(arr); j++ {
+			if arr[minIdx] > arr[j] {
+				minIdx = j
+			}
+		}
+
+		if minIdx != i {
+			temp := arr[i]
+			arr[i] = arr[minIdx]
+			arr[minIdx] = temp
+		}
+	}
+	return arr
+}
+
+func bubbleSort2(arr []int) []int {
+	for i := 0; i < len(arr); i++ {
+		for j := i + 1; j < len(arr)-1; j++ {
+			if arr[i] > arr[j] {
+				//swap
+				temp := arr[i]
+				arr[i] = arr[j]
+				arr[j] = temp
+			}
+		}
+	}
+	return arr
 }
