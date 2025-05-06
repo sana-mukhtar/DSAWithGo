@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-// Given an array of N integers, write a program to implement the Selection sorting algorithm. Selection Sort is a comparison-based sorting algorithm. It sorts an array by repeatedly selecting the smallest (or largest) element from the unsorted portion and swapping it with the first unsorted element. This process continues until the entire array is sorted.
+// 1. Selection Sort – “Find the smallest and put it first”
 func selectionSort(arr []int) []int {
 	for i := 0; i < len(arr); i++ {
 		lowestNum := arr[i]
@@ -86,7 +86,8 @@ func main() {
 	// fmt.Println(mergeSort([]int{2, 8, 4, 5, 9, 1, 12, 5}))
 	a := selSort([]int{1, 2, 4, 5, 8, 0})
 	b := bubbleSort2([]int{2, 3, 1, 4})
-	fmt.Println(a, b)
+	c := insertionSort2([]int{1, 4, 7, 3})
+	fmt.Println(a, b, c)
 
 }
 
@@ -119,6 +120,21 @@ func bubbleSort2(arr []int) []int {
 				arr[j] = temp
 			}
 		}
+	}
+	return arr
+}
+
+// TODO
+func insertionSort2(arr []int) []int {
+	for i := 1; i < len(arr); i++ {
+		curr := arr[i]
+		prev := i - 1
+		if prev > curr && prev >= 0 {
+			// start shifting
+			arr[prev+1] = arr[prev]
+			prev--
+		}
+		arr[prev+1] = curr
 	}
 	return arr
 }
