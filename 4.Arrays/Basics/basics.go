@@ -66,6 +66,19 @@ func removeDuplicates(nums []int) int {
 	return len(uniqueArray)
 }
 
+// [0,1,1,2,3,4,5,5] array wil be in increasing order
+// if i and j are not same continue, return the length of unique elements
+func removeDuplicatesUsingTwoPointers(nums []int) int {
+	i := 0
+	for j := 1; j < len(nums); j++ {
+		if nums[i] != nums[j] {
+			i++
+			nums[i] = nums[j]
+		}
+	}
+	return i + 1
+}
+
 func rotate(nums []int, k int) {
 	length := len(nums) - 1  // 6
 	for i := 0; i < k; i++ { // 3 steps
@@ -247,7 +260,7 @@ func singleNumber(nums []int) int {
 }
 
 func longestSubArray(nums []int, k int) {
-	max := 0
+	// max := 0
 	for i := 0; i < len(nums); i++ {
 		for j := 0; j < len(nums); j++ {
 			sum := 0
@@ -264,4 +277,5 @@ func longestSubArray(nums []int, k int) {
 func main() {
 	moveZeroes([]int{0, 1, 0, 3, 12})
 	fmt.Println(unionOfTwoArrays([]int{1, 2, 2, 3, 4}, []int{1, 1, 2, 5, 7}))
+	fmt.Println(removeDuplicatesUsingTwoPointers([]int{0, 1, 1, 2, 3, 4, 5, 5, 5, 5, 8}))
 }
