@@ -274,8 +274,23 @@ func longestSubArray(nums []int, k int) {
 	}
 }
 
+// [1,2,3,4,5]
+func rotateByOnePlace(arr []int) []int {
+	length := len(arr)
+	element := arr[length-1]
+	for i := length - 1; i > 0; i-- {
+		fmt.Println(arr[i], arr[i-1])
+		arr[i] = arr[i-1]
+	}
+	arr[0] = element
+	return arr
+}
+
 func main() {
-	moveZeroes([]int{0, 1, 0, 3, 12})
-	fmt.Println(unionOfTwoArrays([]int{1, 2, 2, 3, 4}, []int{1, 1, 2, 5, 7}))
-	fmt.Println(removeDuplicatesUsingTwoPointers([]int{0, 1, 1, 2, 3, 4, 5, 5, 5, 5, 8}))
+	// moveZeroes([]int{0, 1, 0, 3, 12})
+	// fmt.Println(unionOfTwoArrays([]int{1, 2, 2, 3, 4}, []int{1, 1, 2, 5, 7}))
+	// fmt.Println(removeDuplicatesUsingTwoPointers([]int{0, 1, 1, 2, 3, 4, 5, 5, 5, 5, 8}))
+	fmt.Println(rotateByOnePlace([]int{1, 2, 3, 4, 5}))
+	fmt.Println(rotateByOnePlace([]int{5, 6, 7, 8, 9, 10}))
+
 }
