@@ -279,11 +279,18 @@ func rotateByOnePlace(arr []int) []int {
 	length := len(arr)
 	element := arr[length-1]
 	for i := length - 1; i > 0; i-- {
-		fmt.Println(arr[i], arr[i-1])
 		arr[i] = arr[i-1]
 	}
 	arr[0] = element
 	return arr
+}
+
+// [1,2,3,4,5,6,7,8] n=3 [6,7,8] len = 8-1-3
+// append 8-3 
+func rotateByNPlaces(arr []int, n int) []int {
+	rotatedArr :=  arr[len(arr)-n:]
+	rotatedArr = append(rotatedArr, arr[:len(arr)-1-n]...)
+	return rotatedArr
 }
 
 func main() {
@@ -291,6 +298,6 @@ func main() {
 	// fmt.Println(unionOfTwoArrays([]int{1, 2, 2, 3, 4}, []int{1, 1, 2, 5, 7}))
 	// fmt.Println(removeDuplicatesUsingTwoPointers([]int{0, 1, 1, 2, 3, 4, 5, 5, 5, 5, 8}))
 	fmt.Println(rotateByOnePlace([]int{1, 2, 3, 4, 5}))
-	fmt.Println(rotateByOnePlace([]int{5, 6, 7, 8, 9, 10}))
+	fmt.Println(rotateByNPlaces([]int{1, 2, 3, 4, 5, 6, 7, 8}, 3))
 
 }
