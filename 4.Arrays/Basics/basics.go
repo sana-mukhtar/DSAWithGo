@@ -16,14 +16,17 @@ func findLargest(arr []int) int {
 }
 
 func findSecondLargest(arr []int) int {
-	largest := math.MinInt
-	secondLargest := math.MinInt
-	for _, val := range arr {
-		if val > largest {
+	largest, secondLargest := arr[0], arr[0]
+	for i := 1; i < len(arr); i++ {
+		if arr[i] > largest {
 			secondLargest = largest
-			largest = val
+			largest = arr[i]
+		}
+		if arr[i] > secondLargest && arr[i] < largest {
+			secondLargest = arr[i]
 		}
 	}
+
 	return secondLargest
 }
 
@@ -286,9 +289,9 @@ func rotateByOnePlace(arr []int) []int {
 }
 
 // [1,2,3,4,5,6,7,8] n=3 [6,7,8] len = 8-1-3
-// append 8-3 
+// append 8-3
 func rotateByNPlaces(arr []int, n int) []int {
-	rotatedArr :=  arr[len(arr)-n:]
+	rotatedArr := arr[len(arr)-n:]
 	rotatedArr = append(rotatedArr, arr[:len(arr)-1-n]...)
 	return rotatedArr
 }
@@ -297,7 +300,9 @@ func main() {
 	// moveZeroes([]int{0, 1, 0, 3, 12})
 	// fmt.Println(unionOfTwoArrays([]int{1, 2, 2, 3, 4}, []int{1, 1, 2, 5, 7}))
 	// fmt.Println(removeDuplicatesUsingTwoPointers([]int{0, 1, 1, 2, 3, 4, 5, 5, 5, 5, 8}))
-	fmt.Println(rotateByOnePlace([]int{1, 2, 3, 4, 5}))
-	fmt.Println(rotateByNPlaces([]int{1, 2, 3, 4, 5, 6, 7, 8}, 3))
+	fmt.Println(findSecondLargest2([]int{2, 6, 9, 4, 2, 0, 1, 8}))
+	fmt.Println(findSecondLargest([]int{2, 6, 9, 4, 2, 0, 1, 8}))
+	// fmt.Println(rotateByOnePlace([]int{1, 2, 3, 4, 5}))
+	// fmt.Println(rotateByNPlaces([]int{1, 2, 3, 4, 5, 6, 7, 8}, 3))
 
 }
