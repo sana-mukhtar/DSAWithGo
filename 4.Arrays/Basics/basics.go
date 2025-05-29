@@ -262,19 +262,19 @@ func singleNumber(nums []int) int {
 	return -1
 }
 
-func longestSubArray(nums []int, k int) {
-	// max := 0
+func subArrayWithSumK(nums []int, k int) int {
+	count := 0
 	for i := 0; i < len(nums); i++ {
-		for j := 0; j < len(nums); j++ {
-			sum := 0
-			for k := i; k < j; k++ {
-				sum += nums[k]
-				if sum == k {
-
-				}
+		sum := 0
+		for j := i; j < len(nums); j++ {
+			sum += nums[j]
+			if sum == k {
+				count++
 			}
 		}
 	}
+
+	return count
 }
 
 // [1,2,3,4,5]
@@ -296,13 +296,25 @@ func rotateByNPlaces(arr []int, n int) []int {
 	return rotatedArr
 }
 
-func main() {
-	// moveZeroes([]int{0, 1, 0, 3, 12})
-	// fmt.Println(unionOfTwoArrays([]int{1, 2, 2, 3, 4}, []int{1, 1, 2, 5, 7}))
-	// fmt.Println(removeDuplicatesUsingTwoPointers([]int{0, 1, 1, 2, 3, 4, 5, 5, 5, 5, 8}))
-	fmt.Println(findSecondLargest2([]int{2, 6, 9, 4, 2, 0, 1, 8}))
-	fmt.Println(findSecondLargest([]int{2, 6, 9, 4, 2, 0, 1, 8}))
-	// fmt.Println(rotateByOnePlace([]int{1, 2, 3, 4, 5}))
-	// fmt.Println(rotateByNPlaces([]int{1, 2, 3, 4, 5, 6, 7, 8}, 3))
+// Q: Check if a pair exists with a given sum in a sorted array
+func checkSum(arr []int, target int) bool {
+	left := arr[0]
+	right := arr[len(arr)-1]
+	for left < right {
+		if left+right > target {
+			right--
+		} else if left+right < target {
+			left++
+		} else {
+			return true
+		}
+	}
 
+	return false
+}
+
+func main() {
+	// fmt.Println(findSecondLargest([]int{2, 6, 9, 4, 2, 0, 1, 8}))
+	// fmt.Println(checkSum([]int{1, 2, 4, 5, 6}, 13))
+	fmt.Println(subArrayWithSumK([]int{10, 2, 5, 2, 5, 1, 2, 3, 4}, 10))
 }
