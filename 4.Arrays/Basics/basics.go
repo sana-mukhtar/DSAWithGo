@@ -277,6 +277,21 @@ func subArrayWithSumK(nums []int, k int) int {
 	return count
 }
 
+func longestsubArrayWithSumK(arr []int, k int) []int {
+	longestSubArray := []int{}
+	for i := 0; i < len(arr); i++ {
+		sum := 0
+		for j := i; j < len(arr); j++ {
+			sum += arr[j]
+			subArrLen := j - i + 1
+			if sum == k && subArrLen > len(longestSubArray) {
+				longestSubArray = arr[i : j+1]
+			}
+		}
+	}
+	return longestSubArray
+}
+
 // [1,2,3,4,5]
 func rotateByOnePlace(arr []int) []int {
 	length := len(arr)
@@ -316,5 +331,5 @@ func checkSum(arr []int, target int) bool {
 func main() {
 	// fmt.Println(findSecondLargest([]int{2, 6, 9, 4, 2, 0, 1, 8}))
 	// fmt.Println(checkSum([]int{1, 2, 4, 5, 6}, 13))
-	fmt.Println(subArrayWithSumK([]int{10, 2, 5, 2, 5, 1, 2, 3, 4}, 10))
+	fmt.Println(longestsubArrayWithSumK([]int{10, 2, 5, 2, 5, 20, 1, 2, 4}, 10))
 }
