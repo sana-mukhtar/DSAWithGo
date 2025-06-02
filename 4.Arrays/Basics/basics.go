@@ -124,6 +124,18 @@ func moveZeroes(nums []int) {
 	}
 }
 
+func moveZeroesUsingTwoPointers(arr []int) []int {
+	zeroVal := 0
+	for i := 0; i < len(arr); i++ {
+		// swap with zero value element when arr[i] is non zero
+		if arr[i] != 0 {
+			arr[zeroVal], arr[i] = arr[i], arr[zeroVal]
+			zeroVal++
+		}
+	}
+	return arr
+}
+
 func linearSearch(key int, arr []int) int {
 	for i, v := range arr {
 		if v == key {
@@ -331,5 +343,6 @@ func checkSum(arr []int, target int) bool {
 func main() {
 	// fmt.Println(findSecondLargest([]int{2, 6, 9, 4, 2, 0, 1, 8}))
 	// fmt.Println(checkSum([]int{1, 2, 4, 5, 6}, 13))
-	fmt.Println(longestsubArrayWithSumK([]int{10, 2, 5, 2, 5, 20, 1, 2, 4}, 10))
+	// fmt.Println(longestsubArrayWithSumK([]int{10, 2, 5, 2, 5, 20, 1, 2, 4}, 10))
+	fmt.Println(moveZeroesUsingTwoPointers([]int{0, 1, 0, 3, 12}))
 }
