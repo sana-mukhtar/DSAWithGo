@@ -69,19 +69,6 @@ func removeDuplicates(nums []int) int {
 	return len(uniqueArray)
 }
 
-// [0,1,1,2,3,4,5,5] array wil be in increasing order
-// if i and j are not same continue, return the length of unique elements
-func removeDuplicatesUsingTwoPointers(nums []int) int {
-	i := 0
-	for j := 1; j < len(nums); j++ {
-		if nums[i] != nums[j] {
-			i++
-			nums[i] = nums[j]
-		}
-	}
-	return i + 1
-}
-
 func rotate(nums []int, k int) {
 	length := len(nums) - 1  // 6
 	for i := 0; i < k; i++ { // 3 steps
@@ -122,18 +109,6 @@ func moveZeroes(nums []int) {
 	for i := nonZeroIdx; i < len(nums); i++ {
 		nums[i] = 0
 	}
-}
-
-func moveZeroesUsingTwoPointers(arr []int) []int {
-	zeroVal := 0
-	for i := 0; i < len(arr); i++ {
-		// swap with zero value element when arr[i] is non zero
-		if arr[i] != 0 {
-			arr[zeroVal], arr[i] = arr[i], arr[zeroVal]
-			zeroVal++
-		}
-	}
-	return arr
 }
 
 func linearSearch(key int, arr []int) int {
@@ -344,5 +319,48 @@ func main() {
 	// fmt.Println(findSecondLargest([]int{2, 6, 9, 4, 2, 0, 1, 8}))
 	// fmt.Println(checkSum([]int{1, 2, 4, 5, 6}, 13))
 	// fmt.Println(longestsubArrayWithSumK([]int{10, 2, 5, 2, 5, 20, 1, 2, 4}, 10))
-	fmt.Println(moveZeroesUsingTwoPointers([]int{0, 1, 0, 3, 12}))
+	// fmt.Println(moveZeroesUsingTwoPointers([]int{0, 1, 0, 3, 12}))
+	fmt.Println(twoSum([]int{1, 2, 30, 5, 90, 70}, 100))
+}
+
+// Two pointers approach
+func moveZeroesUsingTwoPointers(arr []int) []int {
+	zeroVal := 0
+	for i := 0; i < len(arr); i++ {
+		// swap with zero value element when arr[i] is non zero
+		if arr[i] != 0 {
+			arr[zeroVal], arr[i] = arr[i], arr[zeroVal]
+			zeroVal++
+		}
+	}
+	return arr
+}
+
+// [0,1,1,2,3,4,5,5] array wil be in increasing order
+// if i and j are not same continue, return the length of unique elements
+func removeDuplicatesUsingTwoPointers(nums []int) int {
+	slow := 0
+	for fast := 1; fast < len(nums); fast++ {
+		if nums[slow] != nums[fast] {
+			slow++
+			nums[slow] = nums[fast]
+		}
+	}
+	return slow + 1
+}
+
+func twoSum(arr []int, target int) []int {
+	start, end := 0, len(arr)-1
+	for start < end {
+		sum := arr[start] + arr[end]
+		if sum == target {
+			return []int{start, end}
+		} else if sum < target {
+			start++
+		} else {
+			end--
+		}
+	}
+
+	return []int{}
 }
