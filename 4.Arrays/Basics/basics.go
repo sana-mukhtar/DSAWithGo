@@ -320,7 +320,6 @@ func main() {
 	// fmt.Println(checkSum([]int{1, 2, 4, 5, 6}, 13))
 	// fmt.Println(longestsubArrayWithSumK([]int{10, 2, 5, 2, 5, 20, 1, 2, 4}, 10))
 	// fmt.Println(moveZeroesUsingTwoPointers([]int{0, 1, 0, 3, 12}))
-	fmt.Println(twoSum([]int{1, 2, 30, 5, 90, 70}, 100))
 }
 
 // Two pointers approach
@@ -347,20 +346,4 @@ func removeDuplicatesUsingTwoPointers(nums []int) int {
 		}
 	}
 	return slow + 1
-}
-
-func twoSum(arr []int, target int) []int {
-	start, end := 0, len(arr)-1
-	for start < end {
-		sum := arr[start] + arr[end]
-		if sum == target {
-			return []int{start, end}
-		} else if sum < target {
-			start++
-		} else {
-			end--
-		}
-	}
-
-	return []int{}
 }
