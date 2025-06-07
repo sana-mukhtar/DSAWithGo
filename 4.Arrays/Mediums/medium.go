@@ -85,9 +85,26 @@ func sortZeroOnesAndTwosUsingDNF(nums []int) []int {
 	return nums
 }
 
+// 0,1,2,1,2,1
+func majorityElement(nums []int) int {
+	for i := 0; i < len(nums); i++ {
+		count := 0
+		for j := i; j < len(nums); j++ {
+			if nums[i] == nums[j] {
+				count++
+			}
+		}
+		if count > len(nums)/2 {
+			return nums[i]
+		}
+	}
+	return 0
+}
+
 func main() {
 	// fmt.Println(twoSum([]int{1, 2, 3, 1, 4, 5, 7}, 6))
 	// fmt.Println(twoSumUsingTwoPointers([]int{1, 2, 3, 1, 4, 5, 7}, 6))
-	fmt.Println(sortZeroOnesAndTwos([]int{1, 2, 0, 0, 0, 2, 2, 2, 1, 1, 1, 2, 2, 0}))
-	fmt.Println(sortZeroOnesAndTwosUsingDNF([]int{1, 2, 0, 0, 0, 2, 2, 2, 1, 1, 1, 2, 2, 0}))
+	// fmt.Println(sortZeroOnesAndTwos([]int{1, 2, 0, 0, 0, 2, 2, 2, 1, 1, 1, 2, 2, 0}))
+	// fmt.Println(sortZeroOnesAndTwosUsingDNF([]int{1, 2, 0, 0, 0, 2, 2, 2, 1, 1, 1, 2, 2, 0}))
+	fmt.Println(majorityElement([]int{2, 2, 1, 1, 1, 2, 2}))
 }
