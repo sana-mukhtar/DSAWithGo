@@ -65,8 +65,29 @@ func sortZeroOnesAndTwos(nums []int) []int {
 	return nums
 }
 
+func sortZeroOnesAndTwosUsingDNF(nums []int) []int {
+	low, mid, high := 0, 0, len(nums)-1
+	for mid <= high {
+		if nums[mid] == 0 {
+			// swap nums[mid],low
+			nums[low], nums[mid] = nums[mid], nums[low]
+			low++
+			mid++
+		} else if nums[mid] == 1 {
+			mid++
+		} else {
+			// swap nums[mid],high
+			nums[high], nums[mid] = nums[mid], nums[high]
+			high--
+		}
+	}
+
+	return nums
+}
+
 func main() {
 	// fmt.Println(twoSum([]int{1, 2, 3, 1, 4, 5, 7}, 6))
 	// fmt.Println(twoSumUsingTwoPointers([]int{1, 2, 3, 1, 4, 5, 7}, 6))
 	fmt.Println(sortZeroOnesAndTwos([]int{1, 2, 0, 0, 0, 2, 2, 2, 1, 1, 1, 2, 2, 0}))
+	fmt.Println(sortZeroOnesAndTwosUsingDNF([]int{1, 2, 0, 0, 0, 2, 2, 2, 1, 1, 1, 2, 2, 0}))
 }
