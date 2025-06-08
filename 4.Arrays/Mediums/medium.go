@@ -105,7 +105,7 @@ func majorityElement(nums []int) int {
 }
 
 func majorityElementBetter(nums []int) int {
-	sort.Ints(nums)
+	sort.Ints(nums) // tc - O(nlogn)
 
 	freq, ans := 1, nums[0]
 	for i := 1; i < len(nums); i++ {
@@ -123,6 +123,24 @@ func majorityElementBetter(nums []int) int {
 	return 0
 }
 
+// using Moore's voting algorithm
+func majorityElementOptimal(nums []int) int {
+	freq, ans := 0, 0
+
+	for i := 0; i < len(nums); i++ {
+		if freq == 0 {
+			ans = nums[i]
+		}
+		if nums[i] == ans {
+			freq++
+		} else {
+			freq--
+		}
+	}
+
+	return ans
+}
+
 func main() {
 	// fmt.Println(twoSum([]int{1, 2, 3, 1, 4, 5, 7}, 6))
 	// fmt.Println(twoSumUsingTwoPointers([]int{1, 2, 3, 1, 4, 5, 7}, 6))
@@ -130,4 +148,5 @@ func main() {
 	// fmt.Println(sortZeroOnesAndTwosUsingDNF([]int{1, 2, 0, 0, 0, 2, 2, 2, 1, 1, 1, 2, 2, 0}))
 	fmt.Println(majorityElement([]int{2, 2, 1, 1, 1, 2, 2}))
 	fmt.Println(majorityElementBetter([]int{2, 2, 1, 1, 1, 2, 2}))
+	fmt.Println(majorityElementOptimal([]int{2, 2, 1, 1, 1, 2, 2}))
 }
