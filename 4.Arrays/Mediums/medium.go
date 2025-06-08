@@ -141,6 +141,38 @@ func majorityElementOptimal(nums []int) int {
 	return ans
 }
 
+// brute force, leetcode's some test failing using this TC O(n2)
+func maxSubArray(nums []int) int {
+	maxSum := 0
+	for start := 0; start < len(nums); start++ {
+		currSum := 0
+		for end := start; end < len(nums); end++ {
+			currSum += nums[end]
+			if currSum > maxSum {
+				maxSum = currSum
+			}
+		}
+	}
+
+	return maxSum
+}
+
+// optimal, TC O(n)
+func maxSubArrayUsingKadanesAlgo(nums []int) int {
+	currSum,maxSum := 0, nums[0]
+	for start := 0; start < len(nums); start++ {
+			currSum += nums[start]
+			if currSum > maxSum {
+				maxSum = currSum
+			}
+            if currSum <0{
+                currSum=0
+            }
+	}
+
+	return maxSum
+}
+
 func main() {
 	// fmt.Println(twoSum([]int{1, 2, 3, 1, 4, 5, 7}, 6))
 	// fmt.Println(twoSumUsingTwoPointers([]int{1, 2, 3, 1, 4, 5, 7}, 6))
