@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
 // Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
 func twoSum(nums []int, k int) []int {
@@ -101,10 +104,30 @@ func majorityElement(nums []int) int {
 	return 0
 }
 
+func majorityElementBetter(nums []int) int {
+	sort.Ints(nums)
+
+	freq, ans := 1, nums[0]
+	for i := 1; i < len(nums); i++ {
+		if ans == nums[i-1] {
+			freq++
+			ans = nums[i]
+			if freq > len(nums)/2 {
+				return nums[i]
+			}
+		} else {
+			freq = 1
+		}
+	}
+
+	return 0
+}
+
 func main() {
 	// fmt.Println(twoSum([]int{1, 2, 3, 1, 4, 5, 7}, 6))
 	// fmt.Println(twoSumUsingTwoPointers([]int{1, 2, 3, 1, 4, 5, 7}, 6))
 	// fmt.Println(sortZeroOnesAndTwos([]int{1, 2, 0, 0, 0, 2, 2, 2, 1, 1, 1, 2, 2, 0}))
 	// fmt.Println(sortZeroOnesAndTwosUsingDNF([]int{1, 2, 0, 0, 0, 2, 2, 2, 1, 1, 1, 2, 2, 0}))
 	fmt.Println(majorityElement([]int{2, 2, 1, 1, 1, 2, 2}))
+	fmt.Println(majorityElementBetter([]int{2, 2, 1, 1, 1, 2, 2}))
 }
