@@ -6,6 +6,12 @@ import (
 )
 
 // Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+// You may assume that each input would have exactly one solution, and you may not use the same element twice.
+// Approach:
+// Loop through each pair of indices (i, j)
+// Check if nums[i] + nums[j] == k.
+// If yes, return [i, j].
+// If no pair found, return [].
 func twoSum(nums []int, k int) []int {
 	for i := 0; i < len(nums); i++ {
 		sum := 0
@@ -159,26 +165,39 @@ func maxSubArray(nums []int) int {
 
 // optimal, TC O(n)
 func maxSubArrayUsingKadanesAlgo(nums []int) int {
-	currSum,maxSum := 0, nums[0]
+	currSum, maxSum := 0, nums[0]
 	for start := 0; start < len(nums); start++ {
-			currSum += nums[start]
-			if currSum > maxSum {
-				maxSum = currSum
-			}
-            if currSum <0{
-                currSum=0
-            }
+		currSum += nums[start]
+		if currSum > maxSum {
+			maxSum = currSum
+		}
+		if currSum < 0 {
+			currSum = 0
+		}
 	}
 
 	return maxSum
 }
 
+// optimal, TC O(n)
+func printMaxSubArrayUsingKadanesAlgo(nums []int) {
+	currSum, maxSum, start, tempStart, end := 0, nums[0], 0, 0, 0
+	for i := 0; i < len(nums); i++ {
+		currSum += nums[i]
+		if currSum > maxSum {
+			maxSum = currSum
+			start = tempStart
+			end = i
+		}
+		if currSum < 0 {
+			currSum = 0
+			tempStart = i + 1
+		}
+	}
+
+	fmt.Println("MaxSubArray", nums[start:end+1])
+}
+
 func main() {
-	// fmt.Println(twoSum([]int{1, 2, 3, 1, 4, 5, 7}, 6))
-	// fmt.Println(twoSumUsingTwoPointers([]int{1, 2, 3, 1, 4, 5, 7}, 6))
-	// fmt.Println(sortZeroOnesAndTwos([]int{1, 2, 0, 0, 0, 2, 2, 2, 1, 1, 1, 2, 2, 0}))
-	// fmt.Println(sortZeroOnesAndTwosUsingDNF([]int{1, 2, 0, 0, 0, 2, 2, 2, 1, 1, 1, 2, 2, 0}))
-	fmt.Println(majorityElement([]int{2, 2, 1, 1, 1, 2, 2}))
-	fmt.Println(majorityElementBetter([]int{2, 2, 1, 1, 1, 2, 2}))
-	fmt.Println(majorityElementOptimal([]int{2, 2, 1, 1, 1, 2, 2}))
+	printMaxSubArrayUsingKadanesAlgo([]int{-2, 1, -3, 4, -1, 2, 1, -5, 4})
 }
