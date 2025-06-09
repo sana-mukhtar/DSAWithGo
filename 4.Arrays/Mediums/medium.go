@@ -198,6 +198,23 @@ func printMaxSubArrayUsingKadanesAlgo(nums []int) {
 	fmt.Println("MaxSubArray", nums[start:end+1])
 }
 
+// TC-O(n)
+func maxProfitBuyAndSellStock(prices []int) int {
+	maxProfit, bestBuy := 0, prices[0]
+	for i := 1; i < len(prices); i++ {
+		if bestBuy > prices[i] {
+			bestBuy = prices[i]
+		}
+
+		profit := prices[i] - bestBuy
+		if maxProfit < profit {
+			maxProfit = profit
+		}
+	}
+	return maxProfit
+}
+
 func main() {
 	printMaxSubArrayUsingKadanesAlgo([]int{-2, 1, -3, 4, -1, 2, 1, -5, 4})
+	fmt.Println(maxProfitBuyAndSellStock([]int{7, 1, 5, 3, 6, 4}))
 }
