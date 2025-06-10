@@ -285,6 +285,26 @@ func mergeBruteForce(nums1 []int, m int, nums2 []int, n int) {
 	}
 }
 
+// TODO: fix this
+func countSubarrayWithSumK(nums []int, k int) int {
+	if len(nums)<=1{
+		return len(nums)
+	}
+
+	count := 0
+	for i := 0; i < len(nums); i++ {
+		sum := 0
+		sum = nums[i] + nums[i+1]
+		if sum == k || nums[i]==k{
+			count++
+
+		}
+	}
+
+	return count
+}
+
 func main() {
-	mergeBruteForce([]int{1, 2, 3, 0, 0, 0}, 3, []int{2, 5, 6}, 3)
+	// mergeBruteForce([]int{1, 2, 3, 0, 0, 0}, 3, []int{2, 5, 6}, 3)
+	fmt.Println(countSubarrayWithSumK([]int{1, 1, 1}, 2))
 }
