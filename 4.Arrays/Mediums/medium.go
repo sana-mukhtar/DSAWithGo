@@ -241,8 +241,50 @@ func rearrangeArray(nums []int) []int {
 	return rearrangedArray
 }
 
+// Leetcode 88. You are given two integer arrays nums1 and nums2, sorted in non-decreasing order, and two integers m and n, representing the number of elements in nums1 and nums2 respectively.
+// Merge nums1 and nums2 into a single array sorted in non-decreasing order.
+// The final sorted array should not be returned by the function, but instead be stored inside the array nums1. To accommodate this, nums1 has a length of m + n, where the first m elements denote the elements that should be merged, and the last n elements are set to 0 and should be ignored. nums2 has a length of n
+func mergeBruteForce(nums1 []int, m int, nums2 []int, n int) {
+	if n == 0 {
+		return
+	}
+	if m == 0 {
+		for i := 0; i < n; i++ {
+			nums1[i] = nums2[i]
+		}
+		return
+	}
+
+	mergedNums := make([]int, 0, m+n)
+	firstArrIdx, secondArrIdx := 0, 0
+
+	for firstArrIdx < m && secondArrIdx < n {
+		if nums1[firstArrIdx] < nums2[secondArrIdx] {
+			mergedNums = append(mergedNums, nums1[firstArrIdx])
+			firstArrIdx++
+		} else {
+			mergedNums = append(mergedNums, nums2[secondArrIdx])
+			secondArrIdx++
+		}
+	}
+
+	// Append remaining elements
+	for firstArrIdx < m {
+		mergedNums = append(mergedNums, nums1[firstArrIdx])
+		firstArrIdx++
+	}
+
+	for secondArrIdx < n {
+		mergedNums = append(mergedNums, nums2[secondArrIdx])
+		secondArrIdx++
+	}
+
+	// Copy back into nums1
+	for i := 0; i < len(mergedNums); i++ {
+		nums1[i] = mergedNums[i]
+	}
+}
+
 func main() {
-	printMaxSubArrayUsingKadanesAlgo([]int{-2, 1, -3, 4, -1, 2, 1, -5, 4})
-	fmt.Println(maxProfitBuyAndSellStock([]int{7, 1, 5, 3, 6, 4}))
-	fmt.Println(rearrangeArray([]int{3, 1, -2, -5, 2, -4}))
+	mergeBruteForce([]int{1, 2, 3, 0, 0, 0}, 3, []int{2, 5, 6}, 3)
 }
