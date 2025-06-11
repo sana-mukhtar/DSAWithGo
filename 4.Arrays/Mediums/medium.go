@@ -338,8 +338,36 @@ func longestConsecutiveBruteForce(nums []int) int {
 	return longestConsecutive
 }
 
+func longestConsecutiveBetter(nums []int) int {
+	if len(nums) <= 1 {
+		return len(nums)
+	}
+
+	sort.Ints(nums)
+
+	longestConsecutive := 1
+	count := 1
+	for i := 1; i < len(nums); i++ {
+		if nums[i] == nums[i-1] {
+			continue
+		}
+
+		if nums[i] == nums[i-1]+1 {
+			count++
+		} else {
+			count = 1
+		}
+		if count > longestConsecutive {
+			longestConsecutive = count
+		}
+	}
+
+	return longestConsecutive
+}
+
 func main() {
 	// mergeBruteForce([]int{1, 2, 3, 0, 0, 0}, 3, []int{2, 5, 6}, 3)
 	// fmt.Println(countSubarrayWithSumK([]int{1, 1, 1}, 2))
 	fmt.Println(longestConsecutiveBruteForce([]int{100, 4, 200, 1, 3, 2}))
+	fmt.Println(longestConsecutiveBetter([]int{100, 4, 200, 1, 3, 2}))
 }
