@@ -287,7 +287,7 @@ func mergeBruteForce(nums1 []int, m int, nums2 []int, n int) {
 
 // TODO: fix this
 func countSubarrayWithSumK(nums []int, k int) int {
-	if len(nums)<=1{
+	if len(nums) <= 1 {
 		return len(nums)
 	}
 
@@ -295,7 +295,7 @@ func countSubarrayWithSumK(nums []int, k int) int {
 	for i := 0; i < len(nums); i++ {
 		sum := 0
 		sum = nums[i] + nums[i+1]
-		if sum == k || nums[i]==k{
+		if sum == k || nums[i] == k {
 			count++
 
 		}
@@ -304,7 +304,42 @@ func countSubarrayWithSumK(nums []int, k int) int {
 	return count
 }
 
+func longestConsecutiveBruteForce(nums []int) int {
+	if len(nums) <= 1 {
+		return len(nums)
+	}
+
+	longestConsecutive := 1
+	for i := 0; i < len(nums); i++ {
+		mainNum := nums[i]
+		count := 1
+
+		for {
+			found := false
+			for j := 0; j < len(nums); j++ {
+				if mainNum+1 == nums[j] {
+					count++
+					mainNum = nums[j]
+					found = true
+					break
+				}
+			}
+
+			if !found {
+				break
+			}
+		}
+
+		if count > longestConsecutive {
+			longestConsecutive = count
+		}
+	}
+
+	return longestConsecutive
+}
+
 func main() {
 	// mergeBruteForce([]int{1, 2, 3, 0, 0, 0}, 3, []int{2, 5, 6}, 3)
-	fmt.Println(countSubarrayWithSumK([]int{1, 1, 1}, 2))
+	// fmt.Println(countSubarrayWithSumK([]int{1, 1, 1}, 2))
+	fmt.Println(longestConsecutiveBruteForce([]int{100, 4, 200, 1, 3, 2}))
 }
