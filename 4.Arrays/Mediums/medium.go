@@ -365,9 +365,42 @@ func longestConsecutiveBetter(nums []int) int {
 	return longestConsecutive
 }
 
+func longestConsecutiveOptimal(nums []int) int {
+	if len(nums) == 0 {
+		return 0
+	}
+
+	numsMap := make(map[int]bool)
+	for _, num := range nums {
+		numsMap[num] = true
+	}
+
+	longest := 0
+
+	// Loop directly over the set (not nums slice)
+	for num := range numsMap {
+		if !numsMap[num-1] {
+			currentNum := num
+			count := 1
+
+			for numsMap[currentNum+1] {
+				currentNum++
+				count++
+			}
+
+			if count > longest {
+				longest = count
+			}
+		}
+	}
+
+	return longest
+}
+
 func main() {
 	// mergeBruteForce([]int{1, 2, 3, 0, 0, 0}, 3, []int{2, 5, 6}, 3)
 	// fmt.Println(countSubarrayWithSumK([]int{1, 1, 1}, 2))
 	fmt.Println(longestConsecutiveBruteForce([]int{100, 4, 200, 1, 3, 2}))
 	fmt.Println(longestConsecutiveBetter([]int{100, 4, 200, 1, 3, 2}))
+	fmt.Println(longestConsecutiveOptimal([]int{100, 4, 200, 1, 3, 2}))
 }
