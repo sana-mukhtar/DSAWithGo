@@ -397,6 +397,30 @@ func longestConsecutiveOptimal(nums []int) int {
 	return longest
 }
 
+func setZeroes(matrix [][]int) {
+	m, n := len(matrix), len(matrix[0])
+	rowsContainsZero := make([]bool, m)
+	columnContainsZero := make([]bool, n)
+
+	for i := 0; i < m; i++ {
+		for j := 0; j < n; j++ {
+			if matrix[i][j] == 0 {
+				rowsContainsZero[i] = true
+				columnContainsZero[j] = true
+
+			}
+		}
+	}
+
+	for i := 0; i < m; i++ {
+		for j := 0; j < n; j++ {
+			if rowsContainsZero[i] || columnContainsZero[j] {
+				matrix[i][j] = 0
+			}
+		}
+	}
+}
+
 func main() {
 	// mergeBruteForce([]int{1, 2, 3, 0, 0, 0}, 3, []int{2, 5, 6}, 3)
 	// fmt.Println(countSubarrayWithSumK([]int{1, 1, 1}, 2))
