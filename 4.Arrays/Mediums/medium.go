@@ -421,7 +421,8 @@ func setZeroesBetter(matrix [][]int) {
 	}
 }
 
-// [9, 4, 7, 1, 0]
+//	Given an array, print all the elements which are leaders. A Leader is an element that is greater than all of the elements on its right side in the array.
+// [9, 4, 7, 1, 0], output = [9,7,1,0]
 func LeadersInArray(nums []int) []int {
 	leader := nums[len(nums)-1]
 	leadersArray := []int{leader}
@@ -439,6 +440,21 @@ func LeadersInArray(nums []int) []int {
 
 	return leadersArray
 }
+
+// If we just need to print leaders (instead of returning a slice), we can avoid extra space completely!
+//  Output will be in reverse order, which is okay if order doesn't matter.
+func LeadersInArrayOptimized(nums []int) {
+    maxFromRight := nums[len(nums)-1]
+    fmt.Print(maxFromRight, " ")
+
+    for i := len(nums) - 2; i >= 0; i-- {
+        if nums[i] >= maxFromRight {
+            maxFromRight = nums[i]
+            fmt.Print(maxFromRight, " ")
+        }
+    }
+}
+
 
 func main() {
 	// mergeBruteForce([]int{1, 2, 3, 0, 0, 0}, 3, []int{2, 5, 6}, 3)
