@@ -397,7 +397,7 @@ func longestConsecutiveOptimal(nums []int) int {
 	return longest
 }
 
-func setZeroes(matrix [][]int) {
+func setZeroesBetter(matrix [][]int) {
 	m, n := len(matrix), len(matrix[0])
 	rowsContainsZero := make([]bool, m)
 	columnContainsZero := make([]bool, n)
@@ -421,10 +421,27 @@ func setZeroes(matrix [][]int) {
 	}
 }
 
+// [9, 4, 7, 1, 0]
+func LeadersInArray(nums []int) []int {
+	leader := nums[len(nums)-1]
+	leadersArray := []int{leader}
+
+	for i := len(nums) - 2; i >= 0; i-- {
+		if nums[i] > leader {
+			leadersArray = append(leadersArray, nums[i])
+			leader = nums[i]
+		}
+	}
+
+	for start, end := 0, len(leadersArray)-1; start < end; start, end = start+1, end-1 {
+		leadersArray[start], leadersArray[end] = leadersArray[end], leadersArray[start]
+	}
+
+	return leadersArray
+}
+
 func main() {
 	// mergeBruteForce([]int{1, 2, 3, 0, 0, 0}, 3, []int{2, 5, 6}, 3)
 	// fmt.Println(countSubarrayWithSumK([]int{1, 1, 1}, 2))
-	fmt.Println(longestConsecutiveBruteForce([]int{100, 4, 200, 1, 3, 2}))
-	fmt.Println(longestConsecutiveBetter([]int{100, 4, 200, 1, 3, 2}))
-	fmt.Println(longestConsecutiveOptimal([]int{100, 4, 200, 1, 3, 2}))
+	fmt.Println(LeadersInArray([]int{9, 4, 7, 1, 0}))
 }
