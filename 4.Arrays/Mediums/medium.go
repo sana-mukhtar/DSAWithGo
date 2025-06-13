@@ -297,7 +297,6 @@ func countSubarrayWithSumK(nums []int, k int) int {
 		sum = nums[i] + nums[i+1]
 		if sum == k || nums[i] == k {
 			count++
-
 		}
 	}
 
@@ -422,6 +421,7 @@ func setZeroesBetter(matrix [][]int) {
 }
 
 //	Given an array, print all the elements which are leaders. A Leader is an element that is greater than all of the elements on its right side in the array.
+//
 // [9, 4, 7, 1, 0], output = [9,7,1,0]
 func LeadersInArray(nums []int) []int {
 	leader := nums[len(nums)-1]
@@ -442,22 +442,68 @@ func LeadersInArray(nums []int) []int {
 }
 
 // If we just need to print leaders (instead of returning a slice), we can avoid extra space completely!
-//  Output will be in reverse order, which is okay if order doesn't matter.
+//
+//	Output will be in reverse order, which is okay if order doesn't matter.
 func LeadersInArrayOptimized(nums []int) {
-    maxFromRight := nums[len(nums)-1]
-    fmt.Print(maxFromRight, " ")
+	maxFromRight := nums[len(nums)-1]
+	fmt.Print(maxFromRight, " ")
 
-    for i := len(nums) - 2; i >= 0; i-- {
-        if nums[i] >= maxFromRight {
-            maxFromRight = nums[i]
-            fmt.Print(maxFromRight, " ")
-        }
-    }
+	for i := len(nums) - 2; i >= 0; i-- {
+		if nums[i] >= maxFromRight {
+			maxFromRight = nums[i]
+			fmt.Print(maxFromRight, " ")
+		}
+	}
 }
 
+func spiralOrder(matrix [][]int) []int {
+	result := []int{}
+	if len(matrix) == 0 {
+		return result
+	}
+
+	top, bottom := 0, len(matrix)-1
+	left, right := 0, len(matrix[0])-1
+
+	for top <= bottom && left <= right {
+		// Traverse from Left to Right
+		for i := left; i <= right; i++ {
+			result = append(result, matrix[top][i])
+		}
+		top++
+
+		// Traverse from Top to Bottom
+		for i := top; i <= bottom; i++ {
+			result = append(result, matrix[i][right])
+		}
+		right--
+
+		// Traverse from Right to Left (check top <= bottom)
+		if top <= bottom {
+			for i := right; i >= left; i-- {
+				result = append(result, matrix[bottom][i])
+			}
+			bottom--
+		}
+
+		// Traverse from Bottom to Top (check left <= right)
+		if left <= right {
+			for i := bottom; i >= top; i-- {
+				result = append(result, matrix[i][left])
+			}
+			left++
+		}
+	}
+
+	return result
+}
 
 func main() {
 	// mergeBruteForce([]int{1, 2, 3, 0, 0, 0}, 3, []int{2, 5, 6}, 3)
 	// fmt.Println(countSubarrayWithSumK([]int{1, 1, 1}, 2))
 	fmt.Println(LeadersInArray([]int{9, 4, 7, 1, 0}))
+	fmt.Println(spiralOrder([][]int{
+		{1, 2, 3},
+		{4, 5, 6},
+		{7, 8, 9}}))
 }
