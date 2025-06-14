@@ -498,11 +498,25 @@ func spiralOrder(matrix [][]int) []int {
 	return result
 }
 
+func rotate(matrix [][]int) [][]int {
+	n := len(matrix[0])
+	rotatedArr := make([][]int, n)
+
+	for i := 0; i < n; i++ {
+		rotatedArr[i] = make([]int, n)
+		for j := 0; j < n; j++ {
+			rotatedArr[i][j] = matrix[n-1-j][i]
+		}
+	}
+	
+	return rotatedArr
+}
+
 func main() {
 	// mergeBruteForce([]int{1, 2, 3, 0, 0, 0}, 3, []int{2, 5, 6}, 3)
 	// fmt.Println(countSubarrayWithSumK([]int{1, 1, 1}, 2))
-	fmt.Println(LeadersInArray([]int{9, 4, 7, 1, 0}))
-	fmt.Println(spiralOrder([][]int{
+	// fmt.Println(LeadersInArray([]int{9, 4, 7, 1, 0}))
+	fmt.Println(rotate([][]int{
 		{1, 2, 3},
 		{4, 5, 6},
 		{7, 8, 9}}))
