@@ -498,7 +498,7 @@ func spiralOrder(matrix [][]int) []int {
 	return result
 }
 
-func rotate(matrix [][]int) [][]int {
+func rotateImageBrute(matrix [][]int) [][]int {
 	n := len(matrix[0])
 	rotatedArr := make([][]int, n)
 
@@ -508,16 +508,36 @@ func rotate(matrix [][]int) [][]int {
 			rotatedArr[i][j] = matrix[n-1-j][i]
 		}
 	}
-	
+
 	return rotatedArr
+}
+
+func rotateImageOptimal(matrix [][]int) {
+	n := len(matrix)
+
+	// Step 1: Transpose
+	for i := 0; i < n; i++ {
+		for j := i + 1; j < n; j++ {
+			matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+		}
+	}
+
+	// Step 2: Reverse each row
+	for i := 0; i < n; i++ {
+		for j := 0; j < n/2; j++ {
+			matrix[i][j], matrix[i][n-1-j] = matrix[i][n-1-j], matrix[i][j]
+		}
+	}
 }
 
 func main() {
 	// mergeBruteForce([]int{1, 2, 3, 0, 0, 0}, 3, []int{2, 5, 6}, 3)
 	// fmt.Println(countSubarrayWithSumK([]int{1, 1, 1}, 2))
 	// fmt.Println(LeadersInArray([]int{9, 4, 7, 1, 0}))
-	fmt.Println(rotate([][]int{
+	matrix := ([][]int{
 		{1, 2, 3},
 		{4, 5, 6},
-		{7, 8, 9}}))
+		{7, 8, 9}})
+	rotateImageOptimal(matrix)
+	fmt.Println(matrix)
 }
