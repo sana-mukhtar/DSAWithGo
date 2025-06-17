@@ -570,6 +570,32 @@ func reverseColumnWiseTraversal(matrix [][]int) {
 	}
 }
 
+// Transposing a matrix means flipping it over its diagonal — rows become columns and columns become rows.
+func transposeMatrix(matrix [][]int) [][]int {
+	rows := len(matrix)
+	columns := len(matrix[0])
+	result := make([][]int, columns) // because no of columns is going to be length of row for transposed matrix
+
+	for i := 0; i < columns; i++ {
+		result[i] = make([]int, rows)
+		for j := 0; j < rows; j++ {
+			// Transpose: element at (i, j) in original becomes (j, i) in transposed
+			result[i][j] = matrix[j][i]
+		}
+	}
+
+	return result
+}
+
+func printMatrix(matrix [][]int) {
+	for _, row := range matrix {
+		for _, val := range row {
+			fmt.Print(val, " ")
+		}
+		fmt.Println()
+	}
+}
+
 func main() {
 	// mergeBruteForce([]int{1, 2, 3, 0, 0, 0}, 3, []int{2, 5, 6}, 3)
 	// fmt.Println(countSubarrayWithSumK([]int{1, 1, 1}, 2))
@@ -577,10 +603,7 @@ func main() {
 	matrix := ([][]int{
 		{1, 2, 3},
 		{4, 5, 6},
-		{7, 8, 9}})
-	// rowWiseTraversal(matrix)
-	// reverseRowWiseTraversal(matrix)
-	fmt.Println("column wise |")
-	columnWiseTraversal(matrix)
-	reverseColumnWiseTraversal(matrix)
+	})
+	transposedMatrix := transposeMatrix(matrix)
+	printMatrix(transposedMatrix)
 }
