@@ -560,6 +560,16 @@ func reverseRowWiseTraversal(matrix [][]int) {
 	}
 }
 
+func reverseColumnWiseTraversal(matrix [][]int) {
+	for j := len(matrix) - 1; j >= 0; j-- {
+		fmt.Print("reverse column wise", j, " ")
+		for i := 0; i < len(matrix); i++ {
+			fmt.Print(matrix[i][j])
+		}
+		fmt.Println()
+	}
+}
+
 func main() {
 	// mergeBruteForce([]int{1, 2, 3, 0, 0, 0}, 3, []int{2, 5, 6}, 3)
 	// fmt.Println(countSubarrayWithSumK([]int{1, 1, 1}, 2))
@@ -572,4 +582,5 @@ func main() {
 	// reverseRowWiseTraversal(matrix)
 	fmt.Println("column wise |")
 	columnWiseTraversal(matrix)
+	reverseColumnWiseTraversal(matrix)
 }
