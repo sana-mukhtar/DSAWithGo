@@ -576,11 +576,11 @@ func transposeMatrix(matrix [][]int) [][]int {
 	columns := len(matrix[0])
 	result := make([][]int, columns) // because no of columns is going to be length of row for transposed matrix
 
-	for i := 0; i < columns; i++ {
-		result[i] = make([]int, rows)
-		for j := 0; j < rows; j++ {
+	for j := 0; j < columns; j++ {
+		result[j] = make([]int, rows)
+		for i := 0; i < rows; i++ {
 			// Transpose: element at (i, j) in original becomes (j, i) in transposed
-			result[i][j] = matrix[j][i]
+			result[j][i] = matrix[i][j]
 		}
 	}
 
@@ -597,9 +597,6 @@ func printMatrix(matrix [][]int) {
 }
 
 func main() {
-	// mergeBruteForce([]int{1, 2, 3, 0, 0, 0}, 3, []int{2, 5, 6}, 3)
-	// fmt.Println(countSubarrayWithSumK([]int{1, 1, 1}, 2))
-	// fmt.Println(LeadersInArray([]int{9, 4, 7, 1, 0}))
 	matrix := ([][]int{
 		{1, 2, 3},
 		{4, 5, 6},
