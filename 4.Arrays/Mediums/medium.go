@@ -532,17 +532,31 @@ func rotateImageOptimal(matrix [][]int) {
 
 func rowWiseTraversal(matrix [][]int) {
 	for i := 0; i < len(matrix); i++ {
+		fmt.Print("row:", i, " ")
 		for j := 0; j < len(matrix[0]); j++ {
-			fmt.Println("row", i,  matrix[i][j])
+			fmt.Print(matrix[i][j])
 		}
+		fmt.Println()
 	}
 }
 
 func columnWiseTraversal(matrix [][]int) {
 	for j := 0; j < len(matrix[0]); j++ {
+		fmt.Print("col", j, " ")
 		for i := 0; i < len(matrix); i++ {
-			fmt.Println("col", j, matrix[i][j])
+			fmt.Print(matrix[i][j])
 		}
+		fmt.Println()
+	}
+}
+
+func reverseRowWiseTraversal(matrix [][]int) {
+	for i := len(matrix) - 1; i >= 0; i-- {
+		fmt.Print("row:", i, " ")
+		for j := 0; j < len(matrix[0]); j++ {
+			fmt.Print(matrix[i][j])
+		}
+		fmt.Println()
 	}
 }
 
@@ -554,7 +568,8 @@ func main() {
 		{1, 2, 3},
 		{4, 5, 6},
 		{7, 8, 9}})
-	rowWiseTraversal(matrix)
+	// rowWiseTraversal(matrix)
+	// reverseRowWiseTraversal(matrix)
 	fmt.Println("column wise |")
 	columnWiseTraversal(matrix)
 }
