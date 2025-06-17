@@ -530,6 +530,14 @@ func rotateImageOptimal(matrix [][]int) {
 	}
 }
 
+func rowWiseTraversal(matrix [][]int) {
+	for i := 0; i < len(matrix); i++ {
+		for j := 0; j < len(matrix[0]); j++ {
+			fmt.Println("row", i, "col", j, matrix[i][j])
+		}
+	}
+}
+
 func main() {
 	// mergeBruteForce([]int{1, 2, 3, 0, 0, 0}, 3, []int{2, 5, 6}, 3)
 	// fmt.Println(countSubarrayWithSumK([]int{1, 1, 1}, 2))
@@ -538,6 +546,5 @@ func main() {
 		{1, 2, 3},
 		{4, 5, 6},
 		{7, 8, 9}})
-	rotateImageOptimal(matrix)
-	fmt.Println(matrix)
+	rowWiseTraversal(matrix)
 }
