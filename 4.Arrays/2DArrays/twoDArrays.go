@@ -82,12 +82,24 @@ func pattern() {
 	}
 }
 
+func generatePascal(n int) [][]int {
+	result := [][]int{}
+
+	for i := 0; i < n; i++ {
+		row := make([]int, i+1)
+		row[0], row[i] = 1, 1
+
+		for j := 1; j < i; j++ {
+			row[j] = result[i-1][j-1] + result[i-1][j]
+		}
+
+		result = append(result, row)
+	}
+
+	return result
+}
+
 func main() {
-	matrix := ([][]int{
-		{1, 2, 3},
-		{4, 5, 6},
-	})
-	transposedMatrix := transposeMatrix(matrix)
-	printMatrix(transposedMatrix)
-	pattern()
+	tri := generatePascal(5)
+	printMatrix(tri)
 }
