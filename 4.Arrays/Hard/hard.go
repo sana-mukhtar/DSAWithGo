@@ -2,24 +2,44 @@ package main
 
 import "fmt"
 
-func majorityElement2(nums []int) []int {
-	result := []int{}
+// Given an integer array of size n, find all elements that appear more than ⌊ n/3 ⌋ times.
+func majorityElementII(nums []int) []int {
+    // This will store all elements that appear more than n/3 times
+    result := []int{}
 
-	for i := 0; i < len(nums); i++ {
-		count := 0
-		for j := i; j < len(nums); j++ {
-			if nums[i] == nums[j] {
-				count++
-			}
-		}
+    // Outer loop: pick each element one by one
+    for i := 0; i < len(nums); i++ {
+        count := 0 // to count occurrences of nums[i]
 
-		if count > len(nums)/3 {
-			result = append(result, nums[i])
-		}
-	}
+        // Skip if nums[i] is already in the result (to avoid duplicates)
+        alreadyExists := false
+        for _, val := range result {
+            if val == nums[i] {
+                alreadyExists = true
+                break
+            }
+        }
+        if alreadyExists {
+            continue
+        }
 
-	return result
+        // Inner loop: count how many times nums[i] appears from i to end
+        for j := i; j < len(nums); j++ {
+            if nums[i] == nums[j] {
+                count++
+            }
+        }
+
+        // If nums[i] occurs more than n/3 times, add it to the result
+        if count > len(nums)/3 {
+            result = append(result, nums[i])
+        }
+    }
+
+    // Return all elements that appeared more than n/3 times
+    return result
 }
+
 
 // i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
 func threeSum(nums []int) [][]int {
