@@ -56,6 +56,11 @@ func threeSum(nums []int) [][]int {
 	return final
 }
 
+// Row 0:        1
+// Row 1:       1 1
+// Row 2:      1 2 1
+// Row 3:     1 3 3 1
+// Row 4:    1 4 6 4 1
 func pascalsTriangle(numRows int) [][]int {
 	result := [][]int{}
 
@@ -83,5 +88,5 @@ func pascalsTriangle(numRows int) [][]int {
 
 
 func main() {
-	fmt.Println(majorityElement2([]int{1, 1, 1, 3, 3, 2, 2, 2}))
+	fmt.Println(majorityElementII([]int{1, 1, 1, 3, 3, 2, 2, 2}))
 }
