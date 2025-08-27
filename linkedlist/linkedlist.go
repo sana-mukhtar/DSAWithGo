@@ -51,7 +51,32 @@ func (ll *LinkedList) insertAtTail(data int) {
 }
 
 //  insert data at an arbitrary location.
-func (ll *LinkedList) insert(data int) {
+func (ll *LinkedList) insert(position, data int) {
+	if position == 0 {
+		ll.insertAtHead(data)
+		return
+	}
+	// 0 based index
+	if position == ll.length-1 {
+		ll.insertAtTail(data)
+		return
+	}
+
+	newNode := &Node{
+		data: data,
+		next: nil,
+	}
+
+	justPrevNode := ll.head
+
+	for i := 0; i < position-1; i++ {
+		justPrevNode = justPrevNode.next
+	}
+
+	newNode.next = justPrevNode.next
+	justPrevNode.next = newNode
+	ll.length++
+
 }
 
 func main() {
