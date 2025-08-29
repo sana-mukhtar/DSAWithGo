@@ -31,6 +31,7 @@ func (ll *LinkedList) insertAtHead(data int) {
 	ll.length++
 }
 
+// insertAtTail accepts data to add in linkedList chain. If the LL is empty it inserts the data to head, head and tail will be same, otherwise loop to the last node and point last nodes's next to the new node.
 func (ll *LinkedList) insertAtTail(data int) {
 	newNode := Node{
 		data: data,
@@ -40,11 +41,13 @@ func (ll *LinkedList) insertAtTail(data int) {
 	if ll.head == nil {
 		ll.head = &newNode
 	} else {
-		existingNode := ll.head
-		for existingNode.next != nil {
-			existingNode = existingNode.next
+		lastNode := ll.head // starts from head
+
+		//
+		for lastNode.next != nil {
+			lastNode = lastNode.next
 		}
-		existingNode.next = &newNode
+		lastNode.next = &newNode
 	}
 
 	ll.length++
@@ -76,7 +79,50 @@ func (ll *LinkedList) insert(position, data int) {
 	newNode.next = justPrevNode.next
 	justPrevNode.next = newNode
 	ll.length++
+}
 
+func (ll *LinkedList) deleteHead() {
+	head := ll.head
+	ll.head = head.next
+
+	ll.length--
+}
+
+// deleteTail removes the last node of the linked list.
+func (ll *LinkedList) deleteTail() {
+	if ll.head == nil {
+		return // empty list
+	}
+
+	if ll.head.next == nil {
+		ll.head = nil // only one node
+		ll.length--
+		return
+	}
+
+	current := ll.head
+	for current.next.next != nil {
+		current = current.next
+	}
+	current.next = nil
+	ll.length--
+}
+
+func (ll *LinkedList) delete(position int) {
+	if position == 0 {
+		ll.deleteHead()
+	} else if position == ll.length-1 {
+		ll.deleteTail()
+	} else {
+		prevNode := ll.head
+
+		for i := 0; i < position-1; i++ {
+			prevNode = prevNode.next
+		}
+		nodeToDelete := prevNode.next
+		prevNode.next = nodeToDelete.next
+		ll.length--
+	}
 }
 
 func main() {
