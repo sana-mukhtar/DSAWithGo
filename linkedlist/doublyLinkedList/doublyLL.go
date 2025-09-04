@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 type Node struct {
 	data int
 	next *Node
@@ -32,14 +34,40 @@ func (dll *DoublyLinkedList) insertAtHead(data int) {
 		dll.head = newNode
 		dll.tail = newNode
 	} else {
-		// Connect the current head’s prev pointer back to the new node.
-		// If there are already boxes(nodes):
-		// 1. Tell the old first box that a new box is now in front of it.
+		// 1. Tell the old head that a new node is now in front of it.
 		dll.head.prev = newNode
-		// Move the head pointer to the new node, making it the new first element.
-		// 2. Move the "head" pointer to point at this new box, since it’s now the first box in the chain.
+		// 2. Move head pointer to this new node.
 		dll.head = newNode
 	}
 
 	dll.length++
+}
+
+// printLinkedlist shows the list as a chain of nodes.
+func (dll *DoublyLinkedList) printLinkedlist() {
+	current := dll.head
+	if current == nil {
+		fmt.Println("List is empty")
+		return
+	}
+
+	fmt.Print("HEAD <-> ")
+	for current != nil {
+		fmt.Printf("[%d]", current.data)
+		if current.next != nil {
+			fmt.Print(" <-> ")
+		}
+		current = current.next
+	}
+	fmt.Println(" <-> TAIL")
+}
+
+func main() {
+	dll := &DoublyLinkedList{}
+
+	dll.insertAtHead(10)
+	dll.insertAtHead(20)
+	dll.insertAtHead(30)
+
+	dll.printLinkedlist()
 }
