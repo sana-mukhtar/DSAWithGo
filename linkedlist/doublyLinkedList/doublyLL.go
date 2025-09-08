@@ -43,7 +43,7 @@ func (dll *DoublyLinkedList) insertAtHead(data int) {
 	dll.length++
 }
 
-// insertAtHead accepts data to add at the end of the list.
+// insertAtTail accepts data to add at the end of the list.
 func (dll *DoublyLinkedList) insertAtTail(data int) {
 	newNode := &Node{
 		data: data,
@@ -56,6 +56,36 @@ func (dll *DoublyLinkedList) insertAtTail(data int) {
 		dll.head = newNode
 		dll.tail = newNode
 	} else {
+		// 1. Tell the old tail that a new node is now in next of it.
+		dll.tail.next = newNode
+		// 2. Move tail pointer to this new node.
+		dll.tail = newNode
+	}
+
+	dll.length++
+}
+
+// insert accepts data to add at the provided position of the list.
+func (dll *DoublyLinkedList) insert(position int, data int) {
+	newNode := &Node{
+		data: data,
+		prev: nil,
+		next: nil,
+	}
+
+	// If the list is empty, both head and tail point to the new node.
+	if dll.head == nil {
+		dll.head = newNode
+		dll.tail = newNode
+	} else {
+		var currentNode *Node
+		for i := 0; i < position-1; i++ {
+			currentNode = currentNode.next
+		}
+
+		newNode.next = currentNode.next
+		newNode.prev = currentNode
+
 		// 1. Tell the old tail that a new node is now in next of it.
 		dll.tail.next = newNode
 		// 2. Move tail pointer to this new node.
