@@ -125,6 +125,21 @@ func (ll *LinkedList) delete(position int) {
 	}
 }
 
+func reverseList(head *LinkedList) *LinkedList {
+	var prev *LinkedList = nil
+	curr := head
+
+	for curr != nil {
+		next := curr.Next // 1. Save next node
+		curr.Next = prev  // 2. Reverse link
+		prev = curr       // 3. Move prev forward
+		curr = next       // 4. Move curr forward
+	}
+
+	return prev // prev is the new head
+
+}
+
 func main() {
 	// We can initialize our linked list this way. The initial length is zero because there are no nodes in our list yet. The head points to nil because there are no nodes to point to.
 	list := LinkedList{nil, 0}
