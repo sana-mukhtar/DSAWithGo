@@ -14,6 +14,18 @@ type Node struct {
 	next *Node
 }
 
+func (ll *LinkedList) printLinkedlist() {
+	curr := ll.head // start from head
+
+	for curr != nil { // loop until the end of the list
+		fmt.Print(curr.data) // print data
+		if curr.next != nil {
+			fmt.Print("->")
+		}
+		curr = curr.next
+	}
+}
+
 // insertAtHead accepts data to add in linkedList chain. If the LL is empty it inserts the data to head otherwise store the head node to temporary variable and add the provided data to the head then points head's next node to the temporary head variable.
 func (ll *LinkedList) insertAtHead(data int) {
 	newNode := Node{
@@ -125,31 +137,35 @@ func (ll *LinkedList) delete(position int) {
 	}
 }
 
-func reverseList(head *LinkedList) *LinkedList {
-	var prev *LinkedList = nil
-	curr := head
+// func reverseList(head *LinkedList) *LinkedList {
+// 	var prev *LinkedList = nil
+// 	curr := head
 
-	for curr != nil {
-		next := curr.Next // 1. Save next node
-		curr.Next = prev  // 2. Reverse link
-		prev = curr       // 3. Move prev forward
-		curr = next       // 4. Move curr forward
-	}
+// 	for curr != nil {
+// 		next := curr.Next // 1. Save next node
+// 		curr.Next = prev  // 2. Reverse link
+// 		prev = curr       // 3. Move prev forward
+// 		curr = next       // 4. Move curr forward
+// 	}
 
-	return prev // prev is the new head
+// 	return prev // prev is the new head
 
-}
+// }
 
 func main() {
-	// We can initialize our linked list this way. The initial length is zero because there are no nodes in our list yet. The head points to nil because there are no nodes to point to.
-	list := LinkedList{nil, 0}
+	// Create empty linked list
+	list := LinkedList{}
 
-	for i := 0; i < 5; i++ {
-		if i == 0 {
-			fmt.Println(list)
-		}
-		list.insertAtHead(i)
-		fmt.Println(list)
-	}
+	node1 := Node{data: 10}
+	node2 := Node{data: 20}
+	node3 := Node{data: 30}
+
+	node1.next = &node2
+	node2.next = &node3
+
+	list.head = &node1
+	list.length = 3
+
+	list.printLinkedlist()
 
 }
