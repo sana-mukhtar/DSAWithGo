@@ -18,7 +18,8 @@ func (ll *LinkedList) printLinkedlist() {
 	curr := ll.head // start from head
 
 	for curr != nil { // loop until the end of the list
-		fmt.Print(curr.data) // print data
+
+		fmt.Print(" ", curr.data, " ") // print data
 		if curr.next != nil {
 			fmt.Print("->")
 		}
@@ -148,9 +149,10 @@ func (ll *LinkedList) reverseLinkedList() {
 	curr := ll.head
 
 	for curr != nil {
+
 		// reverse logic
 		next := curr.next // save next
-		curr.next = curr  // say current's node's next is current itself
+		curr.next = prev  // say current's node's next is current itself
 
 		// move forward
 		prev = curr // now previous is old current
@@ -158,7 +160,7 @@ func (ll *LinkedList) reverseLinkedList() {
 	}
 
 	// head still points to 10, so we say head is last node i,e, 30 now
-	ll.head = prev 
+	ll.head = prev
 }
 
 func main() {
@@ -176,5 +178,6 @@ func main() {
 	list.length = 3
 
 	list.printLinkedlist()
-
+	list.reverseLinkedList()
+	list.printLinkedlist()
 }
