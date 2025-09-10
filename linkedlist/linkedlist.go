@@ -142,20 +142,24 @@ func (ll *LinkedList) delete(position int) {
 	}
 }
 
-// func reverseList(head *LinkedList) *LinkedList {
-// 	var prev *LinkedList = nil
-// 	curr := head
+// 10 -> 20 -> 30 -> nil
+func (ll *LinkedList) reverseLinkedList() {
+	var prev *Node // previous coach (starts empty)
+	curr := ll.head
 
-// 	for curr != nil {
-// 		next := curr.Next // 1. Save next node
-// 		curr.Next = prev  // 2. Reverse link
-// 		prev = curr       // 3. Move prev forward
-// 		curr = next       // 4. Move curr forward
-// 	}
+	for curr != nil {
+		// reverse logic
+		next := curr.next // save next
+		curr.next = curr  // say current's node's next is current itself
 
-// 	return prev // prev is the new head
+		// move forward
+		prev = curr // now previous is old current
+		curr = next // and current becomes the next
+	}
 
-// }
+	// head still points to 10, so we say head is last node i,e, 30 now
+	ll.head = prev 
+}
 
 func main() {
 	// Create empty linked list
