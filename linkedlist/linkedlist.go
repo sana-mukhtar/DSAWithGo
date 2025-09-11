@@ -165,6 +165,7 @@ func (ll *LinkedList) reverseLinkedList() {
 	ll.head = prev
 }
 
+// Brute Force, count total then return mid node
 func (ll *LinkedList) findMiddleNode(head *Node) *Node {
 	if head == nil {
 		return head
@@ -184,6 +185,23 @@ func (ll *LinkedList) findMiddleNode(head *Node) *Node {
 	}
 
 	return midNode
+}
+
+// Slow Fast Approach, slow moves 1 and fast moves 2 at a time
+// slow will reach till mid when fast completes the traversal, return slow
+func findMiddleNodeOptimal(head *Node) *Node {
+	if head == nil {
+		return head
+	}
+
+	slow := head
+	fast := head
+	for fast != nil && fast.next != nil {
+		slow = slow.next
+		fast = fast.next.next
+	}
+
+	return slow
 }
 
 func main() {
