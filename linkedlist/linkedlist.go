@@ -25,6 +25,8 @@ func (ll *LinkedList) printLinkedlist() {
 		}
 		curr = curr.next
 	}
+
+	fmt.Println()
 }
 
 // insertAtHead accepts data to add in linkedList chain.
@@ -152,7 +154,7 @@ func (ll *LinkedList) reverseLinkedList() {
 
 		// reverse logic
 		next := curr.next // save next
-		curr.next = prev  // say current's node's next is current itself
+		curr.next = prev  // say current's node's next is previous itself
 
 		// move forward
 		prev = curr // now previous is old current
@@ -163,6 +165,27 @@ func (ll *LinkedList) reverseLinkedList() {
 	ll.head = prev
 }
 
+func (ll *LinkedList) findMiddleNode(head *Node) *Node {
+	if head == nil {
+		return head
+	}
+
+	curr := head
+	count := 0
+	for curr != nil {
+		curr = curr.next
+		count++
+	}
+
+	mid := count / 2
+	midNode := head
+	for i := 0; i < mid; i++ {
+		midNode = midNode.next
+	}
+
+	return midNode
+}
+
 func main() {
 	// Create empty linked list
 	list := LinkedList{}
@@ -170,14 +193,18 @@ func main() {
 	node1 := Node{data: 10}
 	node2 := Node{data: 20}
 	node3 := Node{data: 30}
+	node4 := Node{data: 40}
+	node5 := Node{data: 50}
 
 	node1.next = &node2
 	node2.next = &node3
+	node3.next = &node4
+	node4.next = &node5
 
 	list.head = &node1
 	list.length = 3
 
 	list.printLinkedlist()
-	list.reverseLinkedList()
-	list.printLinkedlist()
+	mid := list.findMiddleNode(&node2)
+	fmt.Println(mid)
 }
