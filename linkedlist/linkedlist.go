@@ -204,6 +204,33 @@ func findMiddleNodeOptimal(head *Node) *Node {
 	return slow
 }
 
+func mergeTwoLists(list1 *Node, list2 *Node) *Node {
+	if list1 == nil && list2 == nil {
+		return nil
+	}
+	head := &Node{}
+	mergedList := head
+	for list1 != nil && list2 != nil {
+		if list1.data <= list2.data {
+			mergedList = list1
+			list1 = list1.next
+		} else {
+			mergedList = list2
+			list2 = list2.next
+		}
+		mergedList = mergedList.next
+	}
+
+	if list1 != nil {
+		mergedList.next = list1
+	}
+	if list2 != nil {
+		mergedList.next = list2
+	}
+
+	return head.next
+}
+
 func main() {
 	// Create empty linked list
 	list := LinkedList{}
