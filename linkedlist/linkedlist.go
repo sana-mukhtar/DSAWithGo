@@ -231,6 +231,32 @@ func mergeTwoLists(list1 *Node, list2 *Node) *Node {
 	return head.next
 }
 
+func removeNthFromEnd(head *Node, n int) *Node {
+	// Dummy node to handle edge cases easily (like removing head)
+	dummy := &Node{next: head}
+	length := 0
+	curr := head
+
+	// 1st pass: count the length
+	for curr != nil {
+		length++
+		curr = curr.next
+	}
+
+	// Find the node before the one to delete
+	length -= n // 5-2 = 3
+	curr = dummy
+	for length > 0 {
+		length--
+		curr = curr.next
+	}
+
+	// Delete the node
+	curr.next = curr.next.next
+
+	return dummy.next
+}
+
 func main() {
 	// Create empty linked list
 	list := LinkedList{}
@@ -250,6 +276,9 @@ func main() {
 	list.length = 3
 
 	list.printLinkedlist()
-	mid := list.findMiddleNode(&node2)
-	fmt.Println(mid)
+	removeNthFromEnd(&node1, 2)
+	list.printLinkedlist()
+
+	// mid := list.findMiddleNode(&node2)
+	// fmt.Println(mid)
 }
