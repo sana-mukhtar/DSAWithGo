@@ -257,6 +257,31 @@ func removeNthFromEnd(head *Node, n int) *Node {
 	return dummy.next
 }
 
+func addTwoNumbers(l1 *Node, l2 *Node) *Node {
+	dummy := &Node{} // dummy node to simplify edge cases
+	curr := dummy    // pointer to build result
+	carry := 0       // store carry value
+
+	for l1 != nil || l2 != nil || carry != 0 {
+		x, y := 0, 0
+		if l1 != nil { // take value from l1
+			x = l1.data
+			l1 = l1.next
+		}
+		if l2 != nil { // take value from l2
+			y = l2.data
+			l2 = l2.next
+		}
+
+		sum := x + y + carry
+		carry = sum / 10                  // update carry
+		curr.next = &Node{data: sum % 10} // new node with digit
+		curr = curr.next                  // move result pointer
+	}
+
+	return dummy.next // skip dummy and return real head
+}
+
 func main() {
 	// Create empty linked list
 	list := LinkedList{}
