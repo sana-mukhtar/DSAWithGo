@@ -303,6 +303,31 @@ func getIntersectionNode(headA, headB *Node) *Node {
 	return nil // no intersection
 }
 
+func getIntersectionNode2(headA, headB *Node) *Node {
+	if headA == nil || headB == nil {
+		return nil
+	}
+
+	a, b := headA, headB
+
+	// loop until they meet or both become nil
+	for a != b {
+		if a == nil {
+			a = headB
+		} else {
+			a = a.next
+		}
+
+		if b == nil {
+			b = headA
+		} else {
+			b = b.next
+		}
+	}
+
+	return a // either intersection node or nil
+}
+
 func main() {
 	// Create empty linked list
 	list := LinkedList{}
@@ -333,7 +358,7 @@ func main() {
 	// List B: 5 -> 6 -> 1 -> [common]
 	headB := &Node{data: 5, next: &Node{data: 6, next: &Node{data: 1, next: common}}}
 
-	intersection := getIntersectionNode(headA, headB)
+	intersection := getIntersectionNode2(headA, headB)
 	if intersection != nil {
 		fmt.Println("Intersection at node with value:", intersection.data)
 	} else {
