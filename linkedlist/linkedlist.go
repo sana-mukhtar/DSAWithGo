@@ -282,6 +282,27 @@ func addTwoNumbers(l1 *Node, l2 *Node) *Node {
 	return dummy.next // skip dummy and return real head
 }
 
+// using hashset solution
+func getIntersectionNode(headA, headB *Node) *Node {
+	visited := make(map[*Node]bool)
+
+	// Store all nodes of list A
+	for headA != nil {
+		visited[headA] = true
+		headA = headA.next
+	}
+
+	// Check nodes of list B
+	for headB != nil {
+		if visited[headB] {
+			return headB // first common node
+		}
+		headB = headB.next
+	}
+
+	return nil // no intersection
+}
+
 func main() {
 	// Create empty linked list
 	list := LinkedList{}
@@ -304,6 +325,18 @@ func main() {
 	removeNthFromEnd(&node1, 2)
 	list.printLinkedlist()
 
-	// mid := list.findMiddleNode(&node2)
-	// fmt.Println(mid)
+	// Shared part: 8 -> 4 -> 5
+	common := &Node{data: 8, next: &Node{data: 4, next: &Node{data: 5}}}
+	// List A: 4 -> 1 -> [common]
+	headA := &Node{data: 4, next: &Node{data: 1, next: common}}
+
+	// List B: 5 -> 6 -> 1 -> [common]
+	headB := &Node{data: 5, next: &Node{data: 6, next: &Node{data: 1, next: common}}}
+
+	intersection := getIntersectionNode(headA, headB)
+	if intersection != nil {
+		fmt.Println("Intersection at node with value:", intersection.data)
+	} else {
+		fmt.Println("No intersection")
+	}
 }
