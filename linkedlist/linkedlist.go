@@ -328,6 +328,23 @@ func getIntersectionNode2(headA, headB *Node) *Node {
 	return a // either intersection node or nil
 }
 
+// Floyd's Algorithm
+func hasCycle(head *Node) bool {
+	if head == nil || head.next == nil {
+		return false
+	}
+
+	slow, fast := head, head.next
+	for slow != fast {
+		if fast == nil || fast.next == nil {
+			return false
+		}
+		slow = slow.next
+		fast = fast.next.next
+	}
+	return true
+}
+
 func main() {
 	// Create empty linked list
 	list := LinkedList{}
