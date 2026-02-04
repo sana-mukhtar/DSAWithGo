@@ -315,11 +315,27 @@ func checkSum(arr []int, target int) bool {
 	return false
 }
 
+func generateAllSubArrays(nums []int) [][]int {
+	arrWithSubArray := [][]int{}
+	for i := 0; i < len(nums); i++ {
+		for j := i; j < len(nums); j++ {
+			subArr := []int{}
+			for k := i; k <= j; k++ {
+				subArr = append(subArr, nums[k])
+			}
+			arrWithSubArray = append(arrWithSubArray, subArr)
+		}
+	}
+
+	return arrWithSubArray
+}
+
 func main() {
 	// fmt.Println(findSecondLargest([]int{2, 6, 9, 4, 2, 0, 1, 8}))
 	// fmt.Println(checkSum([]int{1, 2, 4, 5, 6}, 13))
 	// fmt.Println(longestsubArrayWithSumK([]int{10, 2, 5, 2, 5, 20, 1, 2, 4}, 10))
 	// fmt.Println(moveZeroesUsingTwoPointers([]int{0, 1, 0, 3, 12}))
+	fmt.Println(generateAllSubArrays([]int{1, 2, 3, 4, 5}))
 }
 
 // Two pointers approach
