@@ -82,17 +82,50 @@ func merge(left, right []int) []int {
 	return sorted
 }
 
+func mergeSort2(arr []int) []int {
+	if len(arr) <= 1 {
+		return arr
+	}
+
+	mid := len(arr) / 2
+	leftArr := mergeSort2(arr[:mid])
+	rightArr := mergeSort2(arr[mid:])
+
+	return merge2(leftArr, rightArr)
+}
+
+func merge2(leftArr, rightArr []int) []int {
+	sortedArr := []int{}
+	leftIdx, rightIdx := 0, 0
+
+	for leftIdx < len(leftArr) && rightIdx < len(rightArr) {
+		if leftArr[leftIdx] < rightArr[rightIdx] {
+			sortedArr = append(sortedArr, leftArr[leftIdx])
+			leftIdx++
+		} else {
+			sortedArr = append(sortedArr, rightArr[rightIdx])
+			rightIdx++
+		}
+	}
+
+	sortedArr = append(sortedArr, leftArr[leftIdx:]...)
+	sortedArr = append(sortedArr, rightArr[rightIdx:]...)
+
+	return sortedArr
+}
+
 func main() {
-	fmt.Println("selectionsort:", selectionSort([]int{64, 25, 12, 22, 11}))
-	fmt.Println("bubblesort:", bubbleSort([]int{38, 27, 43, 3, 9, 82, 10}))
+	// fmt.Println("selectionsort:", selectionSort([]int{64, 25, 12, 22, 11}))
+	// fmt.Println("bubblesort:", bubbleSort([]int{38, 27, 43, 3, 9, 82, 10}))
 	// 	fmt.Println("bubblesort:", bubbleSort([]int{64, 25, 12, 22, 11}))
 	// fmt.Println("insertionsort:", insertionSort([]int{5, 4, 3, 2, 7}))
 
-	// fmt.Println(mergeSort([]int{2, 8, 4, 5, 9, 1, 12, 5}))
-	a := selSort([]int{1, 2, 4, 5, 8, 0})
-	b := bubbleSort2([]int{2, 3, 1, 4})
-	c := insertionSort2([]int{1, 4, 7, 3})
-	fmt.Println(a, b, c)
+	fmt.Println(mergeSort([]int{2, 8, 4, 5, 9, 1, 12, 5}))
+	fmt.Println(mergeSort2([]int{2, 8, 4, 5, 9, 1, 12, 5}))
+	// a := selSort([]int{1, 2, 4, 5, 8, 0})
+	// b := bubbleSort2([]int{2, 3, 1, 4})
+	// c := insertionSort2([]int{1, 4, 7, 3})
+	// fmt.Println(a, b, c)
 
 }
 
