@@ -165,6 +165,17 @@ func (ll *LinkedList) reverseLinkedList() {
 	ll.head = prev
 }
 
+// prev = nil
+// curr = 10
+
+// reverse
+// next = 20 // save next
+// curr.next = prev
+
+// now prev ko ek aage move karna padega to move forward, to curr ko bhi karna padega
+// prev = curr 
+// curr = next
+
 // Brute Force, count total then return mid node
 func (ll *LinkedList) findMiddleNode(head *Node) *Node {
 	if head == nil {

@@ -5,18 +5,24 @@ import (
 	"math"
 )
 
-func countElements(arr []int) map[int]int {
-	newMap := make(map[int]int)
-	for _, val := range arr {
-		newMap[val]++
+func countFrequency(nums []string) map[int]int {
+	freq := make(map[string]int)
+
+	for _, num := range nums {
+		freq[num]++
 	}
-	return newMap
+
+	for _, n := range freq{
+
+	}
+
+	return freq
 }
 
 // Find the highest/lowest frequency element
 func findLowestHighestFrequency(arr []int) (int, int) {
 	lowest, highest := math.MaxInt, math.MinInt
-	hashmap := countElements(arr)
+	hashmap := countFrequency(arr)
 	lk, hk := 0, 0
 	for key, val := range hashmap {
 		if val > highest {
@@ -33,8 +39,8 @@ func findLowestHighestFrequency(arr []int) (int, int) {
 
 func main() {
 	arr := []int{2, 3, 3, 3, -1, 3, 2, 9, 9}
-	// fmt.Println(countElements(arr))
-	lowest, highest := findLowestHighestFrequency(arr)
-	fmt.Printf("lowest frequency number: %d highest frequency number: %d", lowest, highest)
+	fmt.Println(countFrequency(arr))
+	// lowest, highest := findLowestHighestFrequency(arr)
+	// fmt.Printf("lowest frequency number: %d highest frequency number: %d", lowest, highest)
 
 }
