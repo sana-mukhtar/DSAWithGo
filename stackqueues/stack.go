@@ -22,8 +22,27 @@ func (st *Stack) Pop(elem interface{}) interface{} {
 	lastIdx := len(st.elements) - 1
 	lastElem := st.elements[lastIdx]
 
-	st.elements[lastIdx] = nil
+	st.elements[lastIdx] = nil // this is optional, but it's safer to implement to avoid memory leaks
 	st.elements = st.elements[:lastIdx]
 
 	return lastElem
+}
+
+func (st *Stack) Peek() interface{} {
+	if len(st.elements) == 0 {
+		return nil
+	}
+
+	lastIdx := len(st.elements) - 1
+	lastElem := st.elements[lastIdx]
+
+	return lastElem
+}
+
+func (st *Stack) IsEmpty() bool {
+	return len(st.elements) == 0
+}
+
+func (st *Stack) Size() int {
+	return len(st.elements)
 }
