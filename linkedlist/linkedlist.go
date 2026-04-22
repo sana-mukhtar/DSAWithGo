@@ -173,7 +173,7 @@ func (ll *LinkedList) reverseLinkedList() {
 // curr.next = prev
 
 // now prev ko ek aage move karna padega to move forward, to curr ko bhi karna padega
-// prev = curr 
+// prev = curr
 // curr = next
 
 // Brute Force, count total then return mid node
