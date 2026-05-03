@@ -1,48 +1,57 @@
-package stackqueues
+package main
 
-type Stack struct {
-	elements []interface{}
+import "fmt"
+
+type stack struct {
+	elements []int
 }
 
-func NewStack() *Stack {
-	return &Stack{
-		elements: make([]interface{}, 0),
+func newStack() *stack {
+	return &stack{
+		elements: make([]int, 0),
 	}
 }
 
-func (st *Stack) Push(elem interface{}) {
+func (st *stack) push(elem int) {
 	st.elements = append(st.elements, elem)
 }
 
-func (st *Stack) Pop(elem interface{}) interface{} {
-	if len(st.elements) == 0 {
-		return nil
-	}
-
+func (st *stack) pop() int {
 	lastIdx := len(st.elements) - 1
 	lastElem := st.elements[lastIdx]
 
-	st.elements[lastIdx] = nil // this is optional, but it's safer to implement to avoid memory leaks
 	st.elements = st.elements[:lastIdx]
 
 	return lastElem
 }
 
-func (st *Stack) Peek() interface{} {
-	if len(st.elements) == 0 {
-		return nil
-	}
-
+func (st *stack) peek() int {
 	lastIdx := len(st.elements) - 1
 	lastElem := st.elements[lastIdx]
 
 	return lastElem
 }
 
-func (st *Stack) IsEmpty() bool {
+func (st *stack) size() int {
+	return len(st.elements)
+}
+
+func (st *stack) isEmpty() bool {
 	return len(st.elements) == 0
 }
 
-func (st *Stack) Size() int {
-	return len(st.elements)
+func main() {
+	st := newStack()
+	st.push(1)
+	st.push(2)
+	st.push(3)
+	st.push(4)
+	st.push(5)
+	fmt.Println("stack", st.elements)
+
+	fmt.Println(st.pop())
+	fmt.Println(st.pop())
+	fmt.Println(st.pop())
+
+	fmt.Println("stack", st.elements)
 }
