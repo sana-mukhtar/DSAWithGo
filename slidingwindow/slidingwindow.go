@@ -29,6 +29,52 @@ func maxSubArraySum(arr []int, k int) int {
 	return maxSum
 }
 
+func firstNegativeOnEachWindow(arr []int, windowSize int) []int {
+	n := len(arr)
+
+	if n < windowSize {
+		return []int{}
+	}
+
+	result, negatives := []int{}, []int{}
+
+	// create first window
+	for i := 0; i < windowSize; i++ {
+		if arr[i] < 0 {
+			negatives = append(negatives, arr[i])
+		}
+	}
+
+	// do calculation for first window
+	if len(negatives) > 0 {
+		result = append(result, negatives[0])
+	} else {
+		result = append(result, 0)
+	}
+
+	for i := windowSize; i < len(arr); i++ {
+		// Remove first negative if it goes out of window
+		if len(negatives) > 0 && arr[i-windowSize] == negatives[0] {
+			negatives = negatives[1:]
+		}
+
+		// Add incoming negative element
+		if arr[i] < 0 {
+			negatives = append(negatives, arr[i])
+		}
+
+		// Do calculation for current window
+		if len(negatives) > 0 {
+			result = append(result, negatives[0])
+		} else {
+			result = append(result, 0)
+		}
+	}
+
+	return result
+}
+
 func main() {
 	fmt.Println("Start small. Ship something.", maxSubArraySum([]int{2, 1, 5, 1, 3, 2}, 3))
+	fmt.Println("negatives in each window", firstNegativeOnEachWindow([]int{-1, -2, 1, 2, 3, -5, 6, -8}, 3))
 }
