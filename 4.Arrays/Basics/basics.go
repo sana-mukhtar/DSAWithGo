@@ -341,12 +341,6 @@ func generateAllSubArraysOptimal(nums []int) [][]int {
 	return arrWithSubArray
 }
 
-func customAppend(arr1, arr2 []string)[]string{
-for arr1!=null{
-	
-}
-}
-
 func main() {
 	// fmt.Println(findSecondLargest([]int{2, 6, 9, 4, 2, 0, 1, 8}))
 	// fmt.Println(checkSum([]int{1, 2, 4, 5, 6}, 13))
